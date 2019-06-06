@@ -50,11 +50,13 @@ class DepreciacionController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'inv' => $inv,
         ]);
+
     }
 
     /**
@@ -72,6 +74,13 @@ class DepreciacionController extends Controller
                 return $this->redirect(['mobyequipo/create', 'inv' => $inv]);
             }   
         }
+        if($inv == 2 )
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['inventario/detalles']);
+            }   
+        }
 
         return $this->render('create', [
             'model' => $model,
@@ -86,16 +95,17 @@ class DepreciacionController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['inventario/detalles']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
         ]);
     }
 

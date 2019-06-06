@@ -5,12 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Aro */
 
-$this->title = Yii::t('app', 'Update Aro: {name}', [
+$this->title = Yii::t('app', 'Editar Informacion Aro', [
     'name' => $model->id,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Aros'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+if($inv == 1)
+{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <div class="aro-update">
 
@@ -18,6 +21,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+            'mats'=> $mats,
+            'mars' => $mars,
+            'inv' => $inv,
     ]) ?>
 
 </div>

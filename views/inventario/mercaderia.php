@@ -1,7 +1,6 @@
 <?php 
 use yii\widgets\Pjax;
 use yii\helpers\Html;
-
 use yii\grid\GridView;
 $this->title = Yii::t('app', 'Mercaderias');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
@@ -15,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><li><label>Lentes Semiterminados:</label></li></p>
     <p>
         <?= Html::a(Yii::t('app', 'Ingreso'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Salida'), ['salida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Salida'), ['salida/createinlst'], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,15 +23,37 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
+            [
+            'attribute' => 'material',
+            'value' => 'material.Material'
+            ],
+            [
+            'attribute' => 'tipo',
+            'value' => 'tipo.Tipo'
+            ],
             'Graduacion_base',
-            'Precio_compra',
-            'Porcentaje_ganancia',
+            //'Precio_compra',
+            //'Porcentaje_ganancia',
             'Existencia',
             //'Material_id',
             //'Tipo_id',
-            //'Precio_venta',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'Precio_venta',
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/lentesterm/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/lentesterm/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -43,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><li><label>Lentes Terminados:</label></li></p>
     <p>
         <?= Html::a(Yii::t('app', 'Ingreso'), ['entrada/createinlt', 'id'=>0], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Salida'), ['salida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Salida'), ['salida/createinlt'], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider1,
@@ -52,6 +73,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
+            [
+            'attribute' => 'material',
+            'value' => 'material.Material'
+            ],
+            [
+            'attribute' => 'tipo',
+            'value' => 'tipo.Tipo'
+            ],
             'Graduacion_base',
             'Graduacion_excedente',
             //'Precio_compra',
@@ -61,7 +90,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Tipo_id',
             'Precio_venta',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/lenteterm/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/lenteterm/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -72,7 +116,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><li><label>Aro:</label></li></p>
     <p>
         <?= Html::a(Yii::t('app', 'Ingreso'), ['entrada/createinar', 'id'=>0], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Salida'), ['salida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Salida'), ['salida/createinar'], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider2,
@@ -80,16 +124,39 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'Precio_compra',
-            'Porcentaje_ganancia',
+            //'id',
+            //'Precio_compra',
+            //'Porcentaje_ganancia',
             'Precio_venta',
             'Codigo',
-            'Material_id',
-            'Marca_id',
+            [
+            'attribute' => 'marca',
+            'value' => 'marca.Nombre'
+            ],
+            [
+            'attribute' => 'material',
+            'value' => 'material.Nombre'
+            ],
+            //'Material_id',
+            //'Marca_id',
             'Existencia',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/aro/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/aro/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -100,7 +167,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p><li><label>Accesorios:</label></li></p>
     <p>
         <?= Html::a(Yii::t('app', 'Ingreso'), ['entrada/createinacc', 'id'=>0], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Salida'), ['salida/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Salida'), ['salida/createinacc'], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider3,
@@ -116,7 +183,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Porcentaje_ganancia',
             'Precio_venta',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/accesorios/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/accesorios/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 

@@ -52,10 +52,16 @@ class LentetermController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
+        $model = $this->findModel($id);
+        $model1 = Materiall::findOne($model->Material_id);
+        $model2 = Tipo::findOne($model->Tipo_id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'inv' => $inv,
         ]);
     }
 
@@ -66,6 +72,9 @@ class LentetermController extends Controller
      */
     public function actionCreate($inv)
     {
+        $model->Precio_compra = 0;
+        $model->Existencia = 0;
+        $model->Precio_venta = 0;
         $model = new Lenteterm();
         $mats = [];
         $tmp = Materiall::find()->all();
@@ -102,13 +111,25 @@ class LentetermController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $mats = [];
+        $tmp = Materiall::find()->all();
+        foreach ($tmp as $mat) { 
+            $mats[$mat->id]="Material: ".$mat->Material;
+        }
+        $tips = [];
+        $tmp1 = Tipo::find()->all();
+        foreach ($tmp1 as $tip) { 
+            $tips[$tip->id]="Tipo: ".$tip->Tipo;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['inventario/mercaderia']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
+            'mats' => $mats,
+            'tips' => $tips,
         ]);
     }
 

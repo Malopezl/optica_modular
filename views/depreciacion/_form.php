@@ -25,6 +25,10 @@ use yii\widgets\ActiveForm;
         	{
         	 	echo Html::a(Yii::t('app', 'Cancelar'), ['mobyequipo/create', 'inv'=>$inv], ['class' => 'btn btn-danger']);
         	}
+            else if($inv == 2)
+            {
+                echo Html::a(Yii::t('app', 'Cancelar'), ['inventario/detalles'], ['class' => 'btn btn-danger']);
+            }
          ?>
     </div>
 

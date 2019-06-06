@@ -14,12 +14,14 @@ class AroSearch extends Aro
     /**
      * {@inheritdoc}
      */
+    public $material;
+    public $marca;
     public function rules()
     {
         return [
             [['id', 'Material_id', 'Marca_id', 'Existencia'], 'integer'],
             [['Precio_compra', 'Porcentaje_ganancia', 'Precio_venta'], 'number'],
-            [['Codigo'], 'safe'],
+            [['Codigo', 'marca', 'material'], 'safe'],
         ];
     }
 
@@ -42,12 +44,20 @@ class AroSearch extends Aro
     public function search($params)
     {
         $query = Aro::find();
-
+        $query->joinWith('marca', 'material');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $dataProvider->sort->attributes['material'] = [
+            'asc' => ['Materiala.Nombre' => SORT_ASC],
+            'desc' => ['Materiala.Nombre' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['marca'] = [
+            'asc' => ['Marca.Nombre' => SORT_ASC],
+            'desc' => ['Marca.Nombre' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -69,7 +79,8 @@ class AroSearch extends Aro
         ]);
 
         $query->andFilterWhere(['like', 'Codigo', $this->Codigo]);
-
+        $query->andFilterWhere(['like', 'Marca.Nombre', $this->marca]);
+        $query->andFilterWhere(['like', 'Materiala.Nombre', $this->material]);
         return $dataProvider;
     }
 }

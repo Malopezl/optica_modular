@@ -5,12 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lenteterm */
 
-$this->title = Yii::t('app', 'Update Lenteterm: {name}', [
+$this->title = Yii::t('app', 'Editar Informacion Lente', [
     'name' => $model->id,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lenteterms'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+if($inv == 1)
+{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <div class="lenteterm-update">
 
@@ -18,6 +21,9 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'inv' => $inv,
+        'mats' => $mats,
+        'tips' => $tips,
     ]) ?>
 
 </div>

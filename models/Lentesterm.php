@@ -37,6 +37,7 @@ class Lentesterm extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Graduacion_base','Material_id', 'Tipo_id', 'Porcentaje_ganancia'], 'required'],
             [['Graduacion_base', 'Existencia', 'Material_id', 'Tipo_id'], 'integer'],
             [['Precio_compra', 'Porcentaje_ganancia', 'Precio_venta'], 'number'],
             [['Material_id'], 'exist', 'skipOnError' => true, 'targetClass' => Materiall::className(), 'targetAttribute' => ['Material_id' => 'id']],
@@ -52,12 +53,12 @@ class Lentesterm extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Graduacion_base' => 'Graduacion Base',
-            'Precio_compra' => 'Precio Compra',
-            'Porcentaje_ganancia' => 'Porcentaje Ganancia',
+            'Precio_compra' => 'Precio de Compra',
+            'Porcentaje_ganancia' => 'Porcentaje de Ganancia',
             'Existencia' => 'Existencia',
-            'Material_id' => 'Material ID',
-            'Tipo_id' => 'Tipo ID',
-            'Precio_venta' => 'Precio Venta',
+            'Material_id' => 'Material del Lente',
+            'Tipo_id' => 'Tipo de Lente',
+            'Precio_venta' => 'Precio de Venta',
         ];
     }
 

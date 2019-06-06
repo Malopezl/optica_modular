@@ -52,10 +52,16 @@ class AroController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
+        $model = $this->findModel($id);
+        $model1 = Materiala::findOne($model->Material_id);
+        $model2 = Marca::findOne($model->Marca_id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'inv' => $inv,
         ]);
     }
 
@@ -67,6 +73,9 @@ class AroController extends Controller
     public function actionCreate($inv)
     {
         $model = new Aro();
+        $model->Precio_compra = 0 ;
+        $model->Existencia = 0 ;
+        $model->Precio_venta = 0 ;
         $mats = [];
         $tmp = Materiala::find()->all();
         foreach ($tmp as $mat) { 
@@ -100,16 +109,28 @@ class AroController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv)
     {
         $model = $this->findModel($id);
-
+        $mats = [];
+        $tmp = Materiala::find()->all();
+        foreach ($tmp as $mat) { 
+            $mats[$mat->id]="Material: ".$mat->Nombre;
+        }
+        $mars = [];
+        $tmp1 = Marca::find()->all();
+        foreach ($tmp1 as $mar) { 
+            $mars[$mar->id]="Marca: ".$mar->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['inventario/mercaderia']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'mats'=> $mats,
+            'mars' => $mars,
+            'inv' => $inv,
         ]);
     }
 

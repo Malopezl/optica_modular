@@ -12,16 +12,18 @@ use dosamigos\datetimepicker\DateTimePicker;
 <div class="lenteterm-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+<!--
+    <?= $form->field($model, 'Precio_compra')->textInput() ?>
+    
+    <?= $form->field($model, 'Existencia')->textInput() ?>
+-->
     <?= $form->field($model, 'Graduacion_base')->textInput() ?>
 
     <?= $form->field($model, 'Graduacion_excedente')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Precio_compra')->textInput() ?>
-
     <?= $form->field($model, 'Porcentaje_ganancia')->textInput() ?>
 
-    <?= $form->field($model, 'Existencia')->textInput() ?>
+    
 
     <?= $form->field($model, 'Material_id')->widget(Select2::classname(),[
         'data' => $mats,

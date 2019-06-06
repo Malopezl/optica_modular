@@ -34,6 +34,7 @@ class Accesorios extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Porcentaje_ganancia', 'Nombre'], 'required'],
             [['Descripcion'], 'string'],
             [['Precio_compra', 'Porcentaje_ganancia', 'Precio_venta'], 'number'],
             [['Existencia'], 'integer'],
@@ -50,10 +51,10 @@ class Accesorios extends \yii\db\ActiveRecord
             'id' => 'ID',
             'Nombre' => 'Nombre',
             'Descripcion' => 'Descripcion',
-            'Precio_compra' => 'Precio Compra',
+            'Precio_compra' => 'Precio de Compra',
             'Existencia' => 'Existencia',
-            'Porcentaje_ganancia' => 'Porcentaje Ganancia',
-            'Precio_venta' => 'Precio Venta',
+            'Porcentaje_ganancia' => 'Porcentaje de Ganancia',
+            'Precio_venta' => 'Precio de Venta',
         ];
     }
 

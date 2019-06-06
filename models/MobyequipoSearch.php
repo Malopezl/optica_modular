@@ -14,11 +14,13 @@ class MobyequipoSearch extends Mobyequipo
     /**
      * {@inheritdoc}
      */
+    public $porcentaje;
+    public $nombre;
     public function rules()
     {
         return [
             [['id', 'Existencia', 'Depreciacion_id'], 'integer'],
-            [['Descripcion', 'fechaCompra'], 'safe'],
+            [['Descripcion', 'fechaCompra', 'porcentaje', 'nombre'], 'safe'],
             [['Precio_compra', 'Precio_venta'], 'number'],
         ];
     }
@@ -42,12 +44,20 @@ class MobyequipoSearch extends Mobyequipo
     public function search($params)
     {
         $query = Mobyequipo::find();
-
+         $query->joinWith('depreciacion');
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $dataProvider->sort->attributes['nombre'] = [
+            'asc' => ['Depreciacion.Nombre' => SORT_ASC],
+            'desc' => ['Depreciacion.Nombre' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['porcentaje'] = [
+            'asc' => ['Depreciacion.porcentaje' => SORT_ASC],
+            'desc' => ['Depreciacion.porcentaje' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -68,6 +78,8 @@ class MobyequipoSearch extends Mobyequipo
         ]);
 
         $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+        $query->andFilterWhere(['like', 'Depreciacion.Nombre', $this->nombre]);
+        $query->andFilterWhere(['like', 'Depreciacion.porcentaje', $this->porcentaje]);
 
         return $dataProvider;
     }

@@ -50,10 +50,14 @@ class MobyequipoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id, $inv)
+    {   
+        $model = $this->findModel($id);
+        $model1 = Depreciacion::findOne($model->Depreciacion_id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'inv' => $inv,
         ]);
     }
 
@@ -65,6 +69,9 @@ class MobyequipoController extends Controller
     public function actionCreate($inv)
     {
         $model = new Mobyequipo();
+        $model->Precio_venta = 0;
+        $model->Existencia = 0;
+        $model->Precio_compra = 0;
         $deps = [];
         $tmp = Depreciacion::find()->all();
         foreach ($tmp as $dep) {

@@ -50,10 +50,11 @@ class TipoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'inv' => $inv,
         ]);
     }
 
@@ -66,17 +67,17 @@ class TipoController extends Controller
     {
         $model = new Tipo();
 
-        if($inv == 1)
+        if($invo == 1)
         {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['lentesterm/create', 'inv' => $invo]);
             }
 
         }
-        else if($inv == 2)
+        else if($invo == 2)
         {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return $this->redirect(['lenteterm/create', 'inv' => $invo]);
+                return $this->redirect(['inventario/detalles']);
             }
         }
         return $this->render('create', [
@@ -93,7 +94,7 @@ class TipoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv, $invo)
     {
         $model = $this->findModel($id);
 
@@ -103,6 +104,8 @@ class TipoController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
+            'invo' => $invo,
         ]);
     }
 

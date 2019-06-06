@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $Fecha
  * @property string $Encargado
- * @property string $Cantidad
+ * @property int $Cantidad
  * @property int $Mobyequipo_id
  * @property int $Lenteterm_id
  * @property int $Lentesterm_id
@@ -40,10 +40,11 @@ class Salida extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha', 'Cantidad', 'Encargado', 'Nodocumento'], 'required'],
             [['Fecha'], 'safe'],
-            [['Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id'], 'integer'],
+            [['Cantidad', 'Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id'], 'integer'],
             [['Encargado'], 'string', 'max' => 100],
-            [['Cantidad', 'Nodocumento'], 'string', 'max' => 45],
+            [['Nodocumento'], 'string', 'max' => 45],
             [['Accesorios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['Accesorios_id' => 'id']],
             [['Aro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aro::className(), 'targetAttribute' => ['Aro_id' => 'id']],
             [['Lentesterm_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lentesterm::className(), 'targetAttribute' => ['Lentesterm_id' => 'id']],
@@ -62,12 +63,12 @@ class Salida extends \yii\db\ActiveRecord
             'Fecha' => 'Fecha',
             'Encargado' => 'Encargado',
             'Cantidad' => 'Cantidad',
-            'Mobyequipo_id' => 'Mobyequipo ID',
-            'Lenteterm_id' => 'Lenteterm ID',
-            'Lentesterm_id' => 'Lentesterm ID',
-            'Accesorios_id' => 'Accesorios ID',
-            'Aro_id' => 'Aro ID',
-            'Nodocumento' => 'Nodocumento',
+            'Mobyequipo_id' => 'Mobiliario y Equipo',
+            'Lenteterm_id' => 'Lente Terminado',
+            'Lentesterm_id' => 'Lente Semiterminado',
+            'Accesorios_id' => 'Accesorio',
+            'Aro_id' => 'Aro',
+            'Nodocumento' => 'No de Documento',
         ];
     }
 

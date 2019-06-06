@@ -28,15 +28,38 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'Descripcion:ntext',
             'fechaCompra',
             'Precio_compra',
             'Existencia',
+            [
+            'attribute' => 'nombre',
+            'value' => 'depreciacion.Nombre'
+            ],
+            [
+            'attribute' => 'porcentaje',
+            'value' => 'depreciacion.porcentaje'
+            ],
             //'Depreciacion_id',
             //'Precio_venta',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/mobyequipo/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/mobyequipo/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
