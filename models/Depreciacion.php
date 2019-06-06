@@ -30,6 +30,7 @@ class Depreciacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Nombre', 'porcentaje'], 'required'],
             [['Descripcion'], 'string'],
             [['porcentaje'], 'number'],
             [['Nombre'], 'string', 'max' => 100],
