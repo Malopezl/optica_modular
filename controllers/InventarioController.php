@@ -23,7 +23,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Depreciacion;
 use app\models\DepreciacionSearch;
-
+use app\models\Entrada;
+use app\models\Salida;
+use app\models\EntradaSearch;
+use app\models\SalidaSearch;
 class InventarioController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -76,6 +79,20 @@ class InventarioController extends \yii\web\Controller
             'dataProvider3' => $dataProvider3,
             'searchModel4' => $searchModel4,
             'dataProvider4' => $dataProvider4,
+        ]);
+    }
+    public function actionIngeg()
+    {
+        $searchModel = new EntradaSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel1 = new SalidaSearch();
+        $dataProvider1 = $searchModel1->search(Yii::$app->request->queryParams);
+        return $this->render('ingeg',[
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModel1' => $searchModel1,
+            'dataProvider1' => $dataProvider1,
+
         ]);
     }
 }

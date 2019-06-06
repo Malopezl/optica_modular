@@ -52,10 +52,16 @@ class LentestermController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
-    {
+    public function actionView($id, $inv)
+    {   
+        $model = $this->findModel($id);
+        $model1 = Materiall::findOne($model->Material_id);
+        $model2 = Tipo::findOne($model->Tipo_id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'model2' => $model2,
+            'inv' => $inv,
         ]);
     }
 
@@ -67,6 +73,10 @@ class LentestermController extends Controller
     public function actionCreate($inv)
     {
         $model = new Lentesterm();
+        $model->Porcentaje_ganancia = 0;
+        $model->Porcentaje_compra = 0;
+        $model->Precio_venta = 0;
+        $model->Existencia = 0;
         $mats = [];
         $tmp = Materiall::find()->all();
         foreach ($tmp as $mat) { 
@@ -99,16 +109,31 @@ class LentestermController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+         $mats = [];
+        $tmp = Materiall::find()->all();
+        foreach ($tmp as $mat) { 
+            $mats[$mat->id]="Material: ".$mat->Material;
+        }
+        $tips = [];
+        $tmp1 = Tipo::find()->all();
+        foreach ($tmp1 as $tip) { 
+            $tips[$tip->id]="Tipo: ".$tip->Tipo;
+        }
+        if($inv == 1)
+        {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['entrada/createinlst', 'id' => $model->id]);
+            }   
         }
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
+            'mats' => $mats,
+            'tips' => $tips,
         ]);
     }
 

@@ -50,10 +50,11 @@ class MaterialaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'inv' => $inv,
         ]);
     }
 
@@ -65,11 +66,18 @@ class MaterialaController extends Controller
     public function actionCreate($inv, $invo)
     {
         $model = new Materiala();
-        if($inv == 1)
+        if($invo == 1)
         {
 
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['aro/create', 'inv' => $invo]);
+            }   
+        }
+        else if($invo == 2)
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['inventario/detalles']);
             }   
         }
 
@@ -87,16 +95,18 @@ class MaterialaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv, $invo)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['inventario/detalles']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
+            'invo' => $invo,
         ]);
     }
 

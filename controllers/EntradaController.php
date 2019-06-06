@@ -59,10 +59,53 @@ class EntradaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
+        $model11 = null;
+        $model12 = null;
+        $model21 = null;
+        $model22 = null;
+        $model41 = null;
+        $model42 = null;
+        $model = $this->findModel($id);
+        $model1 = Lenteterm::findOne($model->Lenteterm_id);
+        if($model->Lenteterm_id != null)
+        {
+
+        $model11 = Materiall::findOne($model1->Material_id);
+        $model12 = Tipo::findOne($model1->Tipo_id);
+        }
+        $model2 = Lentesterm::findOne($model->Lentesterm_id);
+        if($model->Lentesterm_id != null)
+        {
+            
+        $model21 = Materiall::findOne($model2->Material_id);
+        $model22 = Tipo::findOne($model2->Tipo_id);
+        }
+        $model3 = Accesorios::findOne($model->Accesorios_id);
+        $model4 = Aro::findOne($model->Aro_id);
+        if($model->Aro_id != null)
+        {
+            
+        $model41 = Materiala::findOne($model4->Marca_id);
+        $model42 = Marca::findOne($model4->Material_id); 
+        }
+        $model5 = Mobyequipo::findOne($model->Mobyequipo_id);
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'model1' => $model1,
+            'model11' => $model11,
+            'model12' => $model12,
+            'model2' => $model2,
+            'model21' => $model21,
+            'model22' => $model22,
+            'model3' => $model3,
+            'model4' => $model4,
+            'model41' => $model41,
+            'model42' => $model42,
+            'model5' => $model5,
+            'inv' => $inv,
         ]);
     }
 
