@@ -35,6 +35,7 @@ class Mobyequipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['fechaCompra', 'Exostencia', 'Depreciacion_id'], 'required'],
             [['Descripcion'], 'string'],
             [['fechaCompra'], 'safe'],
             [['Precio_compra', 'Precio_venta'], 'number'],
@@ -51,11 +52,11 @@ class Mobyequipo extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Descripcion' => 'Descripcion',
-            'fechaCompra' => 'Fecha Compra',
-            'Precio_compra' => 'Precio Compra',
+            'fechaCompra' => 'Fecha de Compra',
+            'Precio_compra' => 'Precio de Compra',
             'Existencia' => 'Existencia',
-            'Depreciacion_id' => 'Depreciacion ID',
-            'Precio_venta' => 'Precio Venta',
+            'Depreciacion_id' => 'Depreciacion',
+            'Precio_venta' => 'Precio de Venta',
         ];
     }
 

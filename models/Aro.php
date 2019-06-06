@@ -37,6 +37,7 @@ class Aro extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Porcentaje_ganancia','Material_id','Marca_id','Codigo'], 'required'],
             [['Precio_compra', 'Porcentaje_ganancia', 'Precio_venta'], 'number'],
             [['Material_id', 'Marca_id', 'Existencia'], 'integer'],
             [['Codigo'], 'string', 'max' => 100],
@@ -52,12 +53,12 @@ class Aro extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Precio_compra' => 'Precio Compra',
-            'Porcentaje_ganancia' => 'Porcentaje Ganancia',
-            'Precio_venta' => 'Precio Venta',
+            'Precio_compra' => 'Precio de Compra',
+            'Porcentaje_ganancia' => 'Porcentaje de Ganancia',
+            'Precio_venta' => 'Precio de Venta',
             'Codigo' => 'Codigo',
-            'Material_id' => 'Material ID',
-            'Marca_id' => 'Marca ID',
+            'Material_id' => 'Material',
+            'Marca_id' => 'Marca',
             'Existencia' => 'Existencia',
         ];
     }

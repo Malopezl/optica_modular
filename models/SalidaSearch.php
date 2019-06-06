@@ -17,8 +17,8 @@ class SalidaSearch extends Salida
     public function rules()
     {
         return [
-            [['id', 'Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id'], 'integer'],
-            [['Fecha', 'Encargado', 'Cantidad', 'Nodocumento'], 'safe'],
+            [['id', 'Cantidad', 'Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id'], 'integer'],
+            [['Fecha', 'Encargado', 'Nodocumento'], 'safe'],
         ];
     }
 
@@ -60,6 +60,7 @@ class SalidaSearch extends Salida
         $query->andFilterWhere([
             'id' => $this->id,
             'Fecha' => $this->Fecha,
+            'Cantidad' => $this->Cantidad,
             'Mobyequipo_id' => $this->Mobyequipo_id,
             'Lenteterm_id' => $this->Lenteterm_id,
             'Lentesterm_id' => $this->Lentesterm_id,
@@ -68,7 +69,6 @@ class SalidaSearch extends Salida
         ]);
 
         $query->andFilterWhere(['like', 'Encargado', $this->Encargado])
-            ->andFilterWhere(['like', 'Cantidad', $this->Cantidad])
             ->andFilterWhere(['like', 'Nodocumento', $this->Nodocumento]);
 
         return $dataProvider;

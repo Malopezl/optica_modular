@@ -14,11 +14,15 @@ class LentestermSearch extends Lentesterm
     /**
      * {@inheritdoc}
      */
+    public $material;
+    public $tipo;
+
     public function rules()
     {
         return [
             [['id', 'Graduacion_base', 'Existencia', 'Material_id', 'Tipo_id'], 'integer'],
             [['Precio_compra', 'Porcentaje_ganancia', 'Precio_venta'], 'number'],
+            [['material', 'tipo'], 'safe'],
         ];
     }
 
@@ -41,12 +45,20 @@ class LentestermSearch extends Lentesterm
     public function search($params)
     {
         $query = Lentesterm::find();
-
+        $query->joinWith(['material', 'tipo']);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+        $dataProvider->sort->attributes['material'] = [
+            'asc' => ['Materiall.Material' => SORT_ASC],
+            'desc' => ['Materiall.Material' => SORT_DESC],
+        ];
+        $dataProvider->sort->attributes['tipo'] = [
+            'asc' => ['Tipo.Tipo' => SORT_ASC],
+            'desc' => ['Tipo.Tipo' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -66,7 +78,9 @@ class LentestermSearch extends Lentesterm
             'Material_id' => $this->Material_id,
             'Tipo_id' => $this->Tipo_id,
             'Precio_venta' => $this->Precio_venta,
-        ]);
+        ])
+        ->andFilterWhere(['like','Materiall.Material', $this->material])
+        ->andFilterWhere(['like','Tipo.Tipo', $this->tipo]);
 
         return $dataProvider;
     }

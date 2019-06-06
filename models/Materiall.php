@@ -29,6 +29,7 @@ class Materiall extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Material'], 'required'],
             [['Material'], 'string', 'max' => 100],
         ];
     }

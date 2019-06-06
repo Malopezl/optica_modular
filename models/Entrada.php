@@ -41,6 +41,7 @@ class Entrada extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Cantidad', 'Precio', 'Fecha', 'Nodocumento', 'Encargado'], 'required'],
             [['Aro_id', 'Accesorios_id', 'Lentesterm_id', 'Lenteterm_id', 'Mobyequipo_id', 'Cantidad'], 'integer'],
             [['Precio'], 'number'],
             [['Fecha'], 'safe'],
@@ -61,13 +62,13 @@ class Entrada extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Nodocumento' => 'Nodocumento',
+            'Nodocumento' => 'No. de documento',
             'Encargado' => 'Encargado',
-            'Aro_id' => 'Aro ID',
-            'Accesorios_id' => 'Accesorios ID',
-            'Lentesterm_id' => 'Lentesterm ID',
-            'Lenteterm_id' => 'Lenteterm ID',
-            'Mobyequipo_id' => 'Mobyequipo ID',
+            'Aro_id' => 'Aro',
+            'Accesorios_id' => 'Accesorio',
+            'Lentesterm_id' => 'Lente Semiterminado',
+            'Lenteterm_id' => 'Lente Terminado',
+            'Mobyequipo_id' => 'Mobiliario y Equipo ',
             'Cantidad' => 'Cantidad',
             'Precio' => 'Precio',
             'Fecha' => 'Fecha',
