@@ -5,12 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Marca */
 
-$this->title = Yii::t('app', 'Update Marca: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('app', 'Editar Marca: {name}', [
+    'name' => $model->Nombre,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Marcas'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+if($invo == 2 ){
+
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalles'), 'url' => ['inventario/detalles']];
+}
+$this->params['breadcrumbs'][] = Yii::t('app', 'Editar');
 ?>
 <div class="marca-update">
 
@@ -18,6 +22,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'inv' => $inv,
+        'invo' => $invo,
     ]) ?>
 
 </div>

@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Entrada */
 
 $this->title = Yii::t('app', 'Registro de Ingreso');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Entradas'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="entrada-create">
 

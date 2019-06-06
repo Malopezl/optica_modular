@@ -21,7 +21,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     if($inv == 1)
-    {
+    {   
+        
     	 echo $this->render('_form', [
        		'model' => $model,
         	'inv' => $inv,
