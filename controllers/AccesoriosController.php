@@ -50,10 +50,11 @@ class AccesoriosController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'inv' => $inv,
         ]);
     }
 
@@ -65,7 +66,9 @@ class AccesoriosController extends Controller
     public function actionCreate($inv)
     {
         $model = new Accesorios();
-
+        $model->Precio_compra = 0 ;
+            $model->Existencia = 0 ;
+            $model->Precio_venta = 0 ;
         if($inv == 1)
         {
 
@@ -87,16 +90,17 @@ class AccesoriosController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $inv)
     {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['inventario/mercaderia']);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => $inv,
         ]);
     }
 
