@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Cantidad')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Cantidad')->textInput() ?>
 
     <?= $form->field($model, 'Mobyequipo_id')->textInput() ?>
 

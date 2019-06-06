@@ -5,9 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Accesorios */
 
-$this->title = Yii::t('app', 'Create Accesorios');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Accesorios'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Registrar Accesorio');
+if($inv == 1)
+{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ingresos'), 'url' => ['entrada/createinacc', 'id' => 0]];
+    $this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <div class="accesorios-create">
 
@@ -16,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php 
     	if($inv == 1 )
     	{
+            
     		echo $this->render('_formen', [
 			        'model' => $model,
 			        'inv' => $inv,

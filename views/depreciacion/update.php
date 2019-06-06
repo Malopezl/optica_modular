@@ -5,11 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Depreciacion */
 
-$this->title = Yii::t('app', 'Update Depreciacion: {name}', [
-    'name' => $model->id,
+$this->title = Yii::t('app', 'Editar Depreciacion: {name}', [
+    'name' => $model->Nombre,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Depreciacions'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+if($inv == 2 ){
+
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalles'), 'url' => ['inventario/detalles']];
+}
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="depreciacion-update">
@@ -18,6 +22,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 
     <?= $this->render('_form', [
         'model' => $model,
+        'inv' => $inv,
     ]) ?>
 
 </div>

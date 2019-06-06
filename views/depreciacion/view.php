@@ -6,15 +6,20 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Depreciacion */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Depreciacions'), 'url' => ['index']];
+$this->title = 'Depreciacion: '.$model->Nombre;
+if($inv == 2 ){
+
+
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalles'), 'url' => ['inventario/detalles']];
 $this->params['breadcrumbs'][] = $this->title;
+}
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="depreciacion-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -25,15 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+-->
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'Nombre',
             'Descripcion:ntext',
             'porcentaje',
         ],
     ]) ?>
+    <?php
+    if($inv == 2)
+    {    
+    echo Html::a(Yii::t('app', 'Regresar'), ['inventario/detalles'], ['class' => 'btn btn-primary']);
+    }
+?>
 
 </div>

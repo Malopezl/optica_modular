@@ -17,15 +17,22 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
         <?php
-        	if($inv == 1)
-        	{
-        	 echo Html::a(Yii::t('app', 'Cancelar'), ['lentesterm/create', 'inv'=>$invo], ['class' => 'btn btn-danger']);
-        	}
-        	else if($inv == 2)
-        	{
-        		echo Html::a(Yii::t('app', 'Cancelar'), ['lenteterm/create', 'inv'=>$invo], ['class' => 'btn btn-danger']);
-        	}
+            if($invo == 1)
+            {
+                    if($inv == 1)
+            {
+             echo Html::a(Yii::t('app', 'Cancelar'), ['lentesterm/create', 'inv'=>$invo], ['class' => 'btn btn-danger']);
+            }
+            else if($inv == 2)
+            {
+                echo Html::a(Yii::t('app', 'Cancelar'), ['lenteterm/create', 'inv'=>$invo], ['class' => 'btn btn-danger']);
+            }
 
+            }
+            else if ($invo == 2)
+            {
+                    echo Html::a(Yii::t('app', 'Cancelar'), ['inventario/detalles'], ['class' => 'btn btn-danger']);
+            }
          ?>
     </div>
 

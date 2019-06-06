@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Marcas de Aros:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['marca/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,7 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'Nombre',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/marca/view?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/marca/update?id='.$model->id.'&inv=0&invo=2';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -40,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Material de Aros:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['materiala/create',  'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider1,
@@ -51,7 +66,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'Nombre',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/materiala/view?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/materiala/update?id='.$model->id.'&inv=0&invo=2';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -60,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Material de Lentes:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['materiall/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
      </p>
 
     <?= GridView::widget([
@@ -72,7 +102,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'Material',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/materiall/view?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/materiall/update?id='.$model->id.'&inv=0&invo=2';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -81,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Tipos de Lentes:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['Tipo/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider3,
@@ -92,7 +137,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'Tipo',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/tipo/view?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/tipo/update?id='.$model->id.'&inv=0&invo=2';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
@@ -102,7 +162,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Depreciaciones:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['depreciacion/create', 'inv'=>2], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider4,
@@ -115,7 +175,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'Descripcion:ntext',
             'porcentaje',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/depreciacion/view?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/depreciacion/update?id='.$model->id.'&inv=2';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 

@@ -6,15 +6,19 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Accesorios */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Accesorios'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Accesorios';
+if($inv == 1)
+{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = $this->title;
+}
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="accesorios-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
+<!--
     <p>
         <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -25,18 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+-->
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'Nombre',
             'Descripcion:ntext',
             'Precio_compra',
             'Existencia',
-            'Porcentaje_ganancia',
+            //'Porcentaje_ganancia',
             'Precio_venta',
         ],
     ]) ?>
-
+    <?php
+    if($inv == 1)
+    {    
+    echo Html::a(Yii::t('app', 'Regresar'), ['inventario/mercaderia'], ['class' => 'btn btn-primary']);
+    }
+    ?>
 </div>

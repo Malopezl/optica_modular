@@ -5,9 +5,14 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Lentesterm */
 
-$this->title = Yii::t('app', 'Create Lentesterm');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Lentesterms'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app', 'Registrar Lente-Semiterminado');
+if($inv == 1)
+{
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Mercaderia'), 'url' => ['inventario/mercaderia']];
+    $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ingresos'), 'url' => ['entrada/createinlst', 'id' => 0]];
+    $this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <div class="lentesterm-create">
 
@@ -16,9 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     if($inv = 1)
     {
-    	$model->Porcentaje_ganancia = 0;
-    	$model->Precio_venta = 0;
-    	$model->Existencia = 0;
+    	
 	    echo  $this->render('_formen', [
 	        'model' => $model,
 	        'mats' => $mats,

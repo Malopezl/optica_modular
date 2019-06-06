@@ -6,8 +6,19 @@ use yii\helpers\Html;
 /* @var $model app\models\Depreciacion */
 
 $this->title = Yii::t('app', 'Create Depreciacion');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Depreciacions'), 'url' => ['index']];
+if($inv == 1)
+{
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Moviliario y Equipo'), 'url' => ['mobyequipo/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Registro de Mobiliario'), 'url' => ['mobyequipo/create', 'inv'=>1]];
 $this->params['breadcrumbs'][] = $this->title;
+}
+else if($inv == 2)
+{
+	
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalles'), 'url' => ['inventario/detalles']];
+$this->params['breadcrumbs'][] = $this->title;
+}
 ?>
 <div class="depreciacion-create">
 
