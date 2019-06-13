@@ -25,11 +25,21 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Correo_electronico2')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Telefono2')->textInput(['maxlength' => true]) ?>
-
+<!--
     <?= $form->field($model, 'Saldo')->textInput() ?>
-
+-->
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
+        <?php
+            if($inv == 1)
+            {
+                echo Html::a(Yii::t('app', 'Cancelar'), ['cliente/index'], ['class' => 'btn btn-danger']); 
+            }
+            else if ($inv == 2)
+            {
+                echo Html::a(Yii::t('app', 'Cancelar'), ['venta/create', 'id'=> 0], ['class' => 'btn btn-danger']); 
+            }
+         ?>
     </div>
 
     <?php ActiveForm::end(); ?>

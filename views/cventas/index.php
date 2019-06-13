@@ -2,7 +2,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-$this->title = Yii::t('app', 'Inventario');
+$this->title = Yii::t('app', 'Ventas');
 ?>
 
   <h1 align="left"><?= Html::encode($this->title) ?></h1>
@@ -12,6 +12,8 @@ $this->title = Yii::t('app', 'Inventario');
 
     	<center>
         <?= Html::a(Yii::t('app', 'Cotizacion'), ['cotizacion/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Ventas'), ['venta/index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Clientes'), ['cliente/index'], ['class' => 'btn btn-primary']) ?>
         </center>
     </p>
     <hr>

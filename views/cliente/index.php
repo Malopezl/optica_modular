@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Clientes');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas'), 'url' => ['cventas/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cliente-index">
@@ -15,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Cliente'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Registrar Nuevo Cliente'), ['create', 'inv' => 1 ], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Inicio'), ['cventas/index'], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,12 +29,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'Nombre',
             'NIT',
             'Direccion',
             'Telefono',
-            //'Correo_Electronico',
+            'Correo_Electronico',
             //'Correo_electronico2',
             //'Telefono2',
             //'Saldo',

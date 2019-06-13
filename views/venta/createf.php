@@ -3,22 +3,22 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Cliente */
+/* @var $model app\models\Venta */
 
-$this->title = Yii::t('app', 'Update Cliente: {name}', [
+$this->title = Yii::t('app', 'Finalizar venta', [
     'name' => $model->id,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Clientes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
-<div class="cliente-update">
+<div class="venta-update">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_forms', [
         'model' => $model,
-        'inv' => 1,
+        'clts' => $clts,
     ]) ?>
 
 </div>

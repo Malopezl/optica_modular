@@ -40,6 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Entregada',
             //'Lista',
             //'Total',
+            //'Finalizada',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

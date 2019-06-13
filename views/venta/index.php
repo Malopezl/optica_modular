@@ -8,6 +8,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Ventas');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas'), 'url' => ['cventas/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="venta-index">
@@ -15,7 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Venta'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Nueva Venta'), ['create', 'id' => 0], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Inicio'), ['cventas/index'], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,14 +29,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'Nodocumento',
             'Fecha',
             'Total',
             'Credito',
-            //'Contado',
+            'Contado',
             //'Cliente_id',
-            //'Encargado',
+            'Encargado',
+            //'Finalizada',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
