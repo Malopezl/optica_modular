@@ -62,16 +62,22 @@ class RecetaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id, $reid, $liid, $ldid, $arid, $ido)
     {
         $model = new Receta();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['orden/creates', 'id' => $id,'reid' => $model->id, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'id' => $id,
+            'ido' => $ido,
+            'reid' => $reid,
+            'liid' => $liid,
+            'ldid' => $ldid,
+            'arid' => $arid,
         ]);
     }
 

@@ -62,16 +62,27 @@ class ClienteController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($inv)
     {
         $model = new Cliente();
+        $model->Saldo = 0;
+        if($inv == 1 )
+        {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['index']);
+            }   
         }
+        else if ($inv == 2 )
+        {
 
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['venta/create', 'id' => $model->id]);
+            }
+        }
         return $this->render('create', [
             'model' => $model,
+            'inv' =>$inv,
         ]);
     }
 
@@ -87,11 +98,12 @@ class ClienteController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
+                return $this->redirect(['index']);
+            }   
 
         return $this->render('update', [
             'model' => $model,
+            'inv' => 1,
         ]);
     }
 

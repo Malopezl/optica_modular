@@ -62,19 +62,54 @@ class OrdenController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id)
     {
         $model = new Orden();
-
+        $model->Venta_id=$id;
+        $model->Finalizada= 0;
+        $model->Entregada = 0;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['creates', 'id' => $model->id,'reid' => 0, 'liid' => 0, 'ldid' => 0, 'arid'=>0, 'ido' => $id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'id' => $id,
         ]);
     }
+    public function actionCreates($id, $reid, $liid, $ldid, $arid, $ido)
+    {
+        $model = $this->findModel($id);
+        if($reid != 0)
+        {
+            $model->Receta_id = $reid;   
+        }
+        if($liid != 0)
+        {
+            $model->Lentei_id = $liid;   
+        }
+        if($ldid != 0)
+        {
+            $model->Lented_id = $ldid;   
+        }
+        if($arid != 0)
+        {
+            $model->Aro_id = $arid;   
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['venta/creates', 'id' => $ido]);
+        }
 
+        return $this->render('creates', [
+            'model' => $model,
+            'id' => $id,
+            'ido' => $ido,
+            'reid' => $reid,
+            'liid' => $liid,
+            'ldid' => $ldid,
+            'arid' => $arid,
+        ]);
+    }
     /**
      * Updates an existing Orden model.
      * If update is successful, the browser will be redirected to the 'view' page.
