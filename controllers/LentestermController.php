@@ -74,7 +74,7 @@ class LentestermController extends Controller
     {
         $model = new Lentesterm();
         $model->Porcentaje_ganancia = 0;
-        $model->Porcentaje_compra = 0;
+        $model->Precio_compra = 0;
         $model->Precio_venta = 0;
         $model->Existencia = 0;
         $mats = [];

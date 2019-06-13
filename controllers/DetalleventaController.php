@@ -47,6 +47,7 @@ class DetalleventaController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -56,10 +57,13 @@ class DetalleventaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id, $inv, $idi)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'inv' => $inv,
+            'idi' => $idi,
+
         ]);
     }
 

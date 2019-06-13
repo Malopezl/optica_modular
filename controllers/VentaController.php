@@ -56,8 +56,21 @@ class VentaController extends Controller
      */
     public function actionView($id)
     {
+        $model =$this->findModel($id);
+        $searchModel = new OrdenSearch();
+        $searchModel->Venta_id=$id;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $searchModel1 = new DetalleventaSearch();
+        $searchModel1->Venta_id=$id;
+        $dataProvider1 = $searchModel1->search(Yii::$app->request->queryParams);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'searchModel1' => $searchModel1,
+            'dataProvider1' => $dataProvider1,
+            'id'=> $id,
+
         ]);
     }
 
