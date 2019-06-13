@@ -8,6 +8,12 @@ use app\models\DetalleventaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Aro;
+use app\models\Accesorios;
+use app\models\Materiall;
+use app\models\Materiala;
+use app\models\Marca;
+use app\models\Tipo;
 
 /**
  * DetalleventaController implements the CRUD actions for Detalleventa model.
@@ -62,16 +68,33 @@ class DetalleventaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($op, $id)
     {
         $model = new Detalleventa();
-
+        $model->Venta_id = $id;
+        $model->Descuento = 0;
+        $aros = [];
+        $tmp = Aro::find()->all();
+        foreach ($tmp as $aro) {
+            $material = Materiala::findOne($aro->Material_id);
+            $marca = Marca::findOne($aro->Marca_id);
+            $aros[$aro->id]="Marca: ".$marca->Nombre."; Codigo: ".$aro->Codigo."; Material: ".$material->Nombre."; Existencia: ".$aro->Existencia;
+        }
+        $acces = [];
+        $tmp1 = Accesorios::find()->all();
+        foreach ($tmp1 as $acce) {
+            $acces[$acce->id]="Nombre: ".$acce->Nombre."; Descripcion: ".$acce->Descripcion."; Existencia: ".$acce->Existencia;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['venta/creates', 'id' => $id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'op' => $op,
+            'aros' => $aros,
+            'acces' => $acces,
+            'id' => $id,
         ]);
     }
 
