@@ -5,8 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orden */
 
-$this->title = Yii::t('app', 'Create Orden');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ordens'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Registrar Nueva Orden');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas')];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Venta')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="orden-create">

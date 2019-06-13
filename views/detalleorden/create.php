@@ -6,7 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Detalleorden */
 
 $this->title = Yii::t('app', 'Agregar Articulo');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalleordens'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas')];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Venta')];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Registro Orden')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="detalleorden-create">

@@ -39,7 +39,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'Encargado',
             //'Finalizada',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/venta/view?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/lentesterm/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 

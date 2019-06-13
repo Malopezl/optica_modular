@@ -22,11 +22,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) ?>
+         <p>
+    <?php //echo $this->render('_search', ['model' => $searchModel]); 
+        echo Html::tag('h3', Html::encode('Total: '.$model->Total), ['class' => 'et1']);
+        ?>
+        </p>
     <?php Pjax::begin(); ?>
-    <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+    <p>
+    <?php //echo $this->render('_search', ['model' => $searchModel]); 
+    echo Html::tag('h3', Html::encode('Ordenes'), ['class' => 'et1']);
+        echo Html::a(Yii::t('app', 'Registrar nueva orden'), ['orden/create', 'id' => $id], ['class' => 'btn btn-primary']);
+        ?>
+        </p>
     <?php
-    	echo Html::tag('h3', Html::encode('Ordenes'), ['class' => 'et1']);
-    	echo Html::a(Yii::t('app', 'Registrar nueva orden'), ['orden/create', 'id' => $id], ['class' => 'btn btn-primary']);
+    	
     	echo  GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -48,10 +57,27 @@ $this->params['breadcrumbs'][] = $this->title;
             'Total',
             //'Finalizada',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/orden/view?id='.$model->id.'&inv=2&idi='.$model->Venta_id;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/lentesterm/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
-    <br>
+   
+    <?php Pjax::end(); ?>
+     <br>
     <?php Pjax::begin(); ?>
     <p>
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -61,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
     echo Html::a(Yii::t('app', 'Agregar Accesorio'), ['detalleventa/create', 'op' => 2, 'id' => $id], ['class' => 'btn btn-primary']);?>
 </p>
     <?php
- 	
+    
     echo GridView::widget([
         'dataProvider' => $dataProvider1,
         'filterModel' => $searchModel1,
@@ -76,10 +102,24 @@ $this->params['breadcrumbs'][] = $this->title;
             'Descuento',
             'Total',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view}',
+            'buttons'=>[
+             'view' => function ($url, $model) {
+                $url = '/detalleventa/view?id='.$model->id.'&inv=2&idi='.$model->Venta_id;
+                return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
+                            'title' =>'Ver'
+                ]);
+            },
+            'update' => function ($url, $model) {
+                $url = '/lentesterm/update?id='.$model->id.'&inv=1';
+                return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, [
+                            'title' => Yii::t('app', 'Editar'),
+                ]);
+            },
+          ],],
         ],
     ]); ?>
 
-    <?php Pjax::end(); ?>
     <?php Pjax::end(); ?>
 </div>
