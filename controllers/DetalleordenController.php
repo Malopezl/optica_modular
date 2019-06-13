@@ -71,6 +71,8 @@ class DetalleordenController extends Controller
     public function actionCreate($id, $reid, $liid, $ldid, $arid, $ido, $op)
     {
         $model = new Detalleorden();
+        $model->Total= 0;
+        $model->Descuento = 0;
        $lentes = [];
         $tmp = Lentesterm::find()->all();
         foreach ($tmp as $lente) {
@@ -154,11 +156,26 @@ class DetalleordenController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    public function actionDelete($id, $idi, $reid, $liid, $ldid, $arid, $ido, $op)
     {
+        
         $this->findModel($id)->delete();
+        if($op == 11 || $op == 12)
+        {
+            return $this->redirect(['orden/creates', 'id' => $idi,'reid' => $reid, 'liid' => 0, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido]);
+        
+        }
+        else if($op == 21 || $op == 22)
+        {
+            return $this->redirect(['orden/creates', 'id' => $idi,'reid' => $reid, 'liid' => $liid, 'ldid' => 0, 'arid'=>$arid, 'ido' => $ido]);
+        
+        }
+        else if($op == 3)
+        {
+            return $this->redirect(['orden/creates', 'id' => $idi,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>0, 'ido' => $ido]);
+          
+        }
 
-        return $this->redirect(['index']);
     }
 
     /**
