@@ -32,13 +32,11 @@ class Abonos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id'], 'required'],
-            [['id', 'Cliente_id'], 'integer'],
+            [['Cliente_id'], 'integer'],
             [['Fecha'], 'safe'],
             [['Cantidad'], 'number'],
             [['Encargado'], 'string', 'max' => 45],
             [['Nodocumento'], 'string', 'max' => 100],
-            [['id'], 'unique'],
             [['Cliente_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['Cliente_id' => 'id']],
         ];
     }

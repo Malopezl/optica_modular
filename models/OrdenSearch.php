@@ -17,7 +17,7 @@ class OrdenSearch extends Orden
     public function rules()
     {
         return [
-            [['id', 'Receta_id', 'Lentei_id', 'Lented_id', 'Aro_id', 'Venta_id', 'Entregada', 'Lista'], 'integer'],
+            [['id', 'Receta_id', 'Lentei_id', 'Lented_id', 'Aro_id', 'Venta_id', 'Entregada', 'Lista', 'Finalizada'], 'integer'],
             [['No_Caja', 'Fecha_Entrega', 'Anotaciones'], 'safe'],
             [['Descuento', 'Total'], 'number'],
         ];
@@ -70,6 +70,7 @@ class OrdenSearch extends Orden
             'Entregada' => $this->Entregada,
             'Lista' => $this->Lista,
             'Total' => $this->Total,
+            'Finalizada' => $this->Finalizada,
         ]);
 
         $query->andFilterWhere(['like', 'No_Caja', $this->No_Caja])

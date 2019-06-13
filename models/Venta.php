@@ -15,8 +15,9 @@ use Yii;
  * @property double $Contado
  * @property int $Cliente_id
  * @property string $Encargado
+ * @property int $Finalizada
  *
- * @property DetalleVenta[] $detalleVentas
+ * @property Detalleventa[] $detalleventas
  * @property Orden[] $ordens
  * @property Cliente $cliente
  */
@@ -38,7 +39,7 @@ class Venta extends \yii\db\ActiveRecord
         return [
             [['Fecha'], 'safe'],
             [['Total', 'Credito', 'Contado'], 'number'],
-            [['Cliente_id'], 'integer'],
+            [['Cliente_id', 'Finalizada'], 'integer'],
             [['Nodocumento', 'Encargado'], 'string', 'max' => 100],
             [['Cliente_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['Cliente_id' => 'id']],
         ];
@@ -58,15 +59,16 @@ class Venta extends \yii\db\ActiveRecord
             'Contado' => 'Contado',
             'Cliente_id' => 'Cliente ID',
             'Encargado' => 'Encargado',
+            'Finalizada' => 'Finalizada',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDetalleVentas()
+    public function getDetalleventas()
     {
-        return $this->hasMany(DetalleVenta::className(), ['Venta_id' => 'id']);
+        return $this->hasMany(Detalleventa::className(), ['Venta_id' => 'id']);
     }
 
     /**

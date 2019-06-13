@@ -20,6 +20,7 @@ use Yii;
  * @property int $Entregada
  * @property int $Lista
  * @property double $Total
+ * @property int $Finalizada
  *
  * @property Detalleorden $lentei
  * @property Detalleorden $lented
@@ -43,7 +44,7 @@ class Orden extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Receta_id', 'Lentei_id', 'Lented_id', 'Aro_id', 'Venta_id', 'Entregada', 'Lista'], 'integer'],
+            [['Receta_id', 'Lentei_id', 'Lented_id', 'Aro_id', 'Venta_id', 'Entregada', 'Lista', 'Finalizada'], 'integer'],
             [['Fecha_Entrega'], 'safe'],
             [['Anotaciones'], 'string'],
             [['Descuento', 'Total'], 'number'],
@@ -75,6 +76,7 @@ class Orden extends \yii\db\ActiveRecord
             'Entregada' => 'Entregada',
             'Lista' => 'Lista',
             'Total' => 'Total',
+            'Finalizada' => 'Finalizada',
         ];
     }
 
