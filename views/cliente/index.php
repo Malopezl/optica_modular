@@ -39,7 +39,9 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Telefono2',
             //'Saldo',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update}',
+            ],
         ],
     ]); ?>
 

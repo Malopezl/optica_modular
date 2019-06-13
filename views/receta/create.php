@@ -6,7 +6,9 @@ use yii\helpers\Html;
 /* @var $model app\models\Receta */
 
 $this->title = Yii::t('app', 'Create Receta');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Recetas'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Ventas')];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Venta')];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Registro Orden')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="receta-create">

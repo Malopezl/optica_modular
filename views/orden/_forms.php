@@ -6,6 +6,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use dosamigos\datetimepicker\DateTimePicker;
 
+use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Orden */
 /* @var $form yii\widgets\ActiveForm */
@@ -32,7 +33,9 @@ use dosamigos\datetimepicker\DateTimePicker;
     <?= $form->field($model, 'Entregada')->textInput() ?>
 
 -->
-
+<h3>
+    Receta
+</h3>
 	 <?php
 	 if($model->Receta_id == null)
 	 {
@@ -40,37 +43,123 @@ use dosamigos\datetimepicker\DateTimePicker;
 	 }
 	 else
 	 {
-	 	echo $form->field($model, 'Receta_id')->textInput();
+	 	echo DetailView::widget([
+        'model' => $model1,
+        'attributes' => [
+          //  'id',
+            'Fecha',
+            'Esfera_OD',
+            'Esfera_OI',
+            'Eje_OD',
+            'Eje_OI',
+            'Cilindro_OD',
+            'Cilindro_OI',
+            'Adicion_OD',
+            'Adicion_OI',
+            //'Cliente_id',
+        ],
+    ]);
 	 }
 
 	?>
-
+<h3>
+    Lente Izquierdo
+</h3>
     <?php 
     	if($model->Lentei_id == null)
     	{
-	 		echo Html::a(Yii::t('app', 'Agregar Lente Izquierdo/Semiterminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 11], ['class' => 'btn btn-primary']);
+	 		echo Html::a(Yii::t('app', 'Agregar Semiterminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 11], ['class' => 'btn btn-primary']);
 	 		echo "  ";
-	 		echo Html::a(Yii::t('app', 'Agregar Lente Izquierdo/Terminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 12], ['class' => 'btn btn-primary']);
+	 		echo Html::a(Yii::t('app', 'Agregar Terminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 12], ['class' => 'btn btn-primary']);
     	}
     	else
     	{
-    		echo $form->field($model, 'Lentei_id')->textInput();
+    		if($model3->Lentesterm_id != null)
+            {
+                echo DetailView::widget([
+        'model' => $model31,
+        'attributes' => [
+            //'id',
+            'Graduacion_base',
+            'Precio_compra',
+            'Porcentaje_ganancia',
+            'Existencia',
+            //'Material_id',
+            //'Tipo_id',
+            //'Precio_venta',
+        ],
+    ]);
+            }   
+            else
+            {
+                echo DetailView::widget([
+        'model' => $model31,
+        'attributes' => [
+            //'id',
+            'Graduacion_base',
+            'Graduacion_excedente',
+            'Precio_compra',
+            'Porcentaje_ganancia',
+            'Existencia',
+           // 'Material_id',
+            //'Tipo_id',
+            //'Precio_venta',
+        ],
+    ]);
+            }  
     	}
      ?>
-
+<h3>
+    Lente Derecho
+</h3>
     <?php 
     	if ($model->Lented_id == null)
     	{
-    		echo Html::a(Yii::t('app', 'Agregar Lente Derecho/ Semiterminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 21], ['class' => 'btn btn-primary']);
+    		echo Html::a(Yii::t('app', 'Agregar Semiterminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 21], ['class' => 'btn btn-primary']);
     		echo "  ";
-    		echo Html::a(Yii::t('app', 'Agregar Lente Derecho/ Temiterminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 22], ['class' => 'btn btn-primary']);
+    		echo Html::a(Yii::t('app', 'Agregar Terminado'), ['detalleorden/create', 'id' => $model->id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido, 'op' => 22], ['class' => 'btn btn-primary']);
     	}
     	else
     	{
-    		echo $form->field($model, 'Lented_id')->textInput();
+    		if($model4->Lentesterm_id != null)
+            {
+                echo DetailView::widget([
+        'model' => $model41,
+        'attributes' => [
+            //'id',
+            'Graduacion_base',
+            'Precio_compra',
+            'Porcentaje_ganancia',
+            'Existencia',
+            //'Material_id',
+            //'Tipo_id',
+            //'Precio_venta',
+        ],
+    ]);
+            }   
+            else
+            {
+                echo DetailView::widget([
+        'model' => $model41,
+        'attributes' => [
+            //'id',
+            'Graduacion_base',
+            'Graduacion_excedente',
+            'Precio_compra',
+            'Porcentaje_ganancia',
+            'Existencia',
+           // 'Material_id',
+            //'Tipo_id',
+            //'Precio_venta',
+        ],
+    ]);
+            }
     	}
     ?>
 
+<h3>
+    Aro
+</h3>
     <?php 
      if($model->Aro_id == null)
      {
@@ -78,10 +167,22 @@ use dosamigos\datetimepicker\DateTimePicker;
      }
      else
      {
-     	echo $form->field($model, 'Aro_id')->textInput();
+     	echo DetailView::widget([
+        'model' => $model23,
+        'attributes' => [
+            //'id',
+            'Precio_compra',
+            'Porcentaje_ganancia',
+            'Precio_venta',
+            'Codigo',
+            //'Material_id',
+            //'Marca_id',
+            'Existencia',
+        ],
+    ]);
      }
      ?>
-     <br>
+     <h3>   </h3>
     <?= $form->field($model, 'Fecha_Entrega')->widget(DateTimePicker::className(), [
                                                                         'language' => 'es',
                                                                         'size' => 'ms',

@@ -69,9 +69,9 @@ use kartik\select2\Select2;
      ?>
 
     <?= $form->field($model, 'Descuento')->textInput() ?>
-
+<!--
     <?= $form->field($model, 'Total')->textInput() ?>
-
+-->
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
         <?= Html::a(Yii::t('app', 'Cancelar'), ['orden/creates', 'id' => $id,'reid' => $reid, 'liid' => $liid, 'ldid' => $ldid, 'arid'=>$arid, 'ido' => $ido], ['class' => 'btn btn-danger']) ?>

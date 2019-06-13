@@ -41,8 +41,15 @@ use dosamigos\datetimepicker\DateTimePicker;
         'options'=>['placeholder'=>'Seleccione el Cliente'],
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
--->
+
     <?= $form->field($model, 'Total')->textInput() ?>
+-->
+    
+     <p>
+    <?php 
+        echo Html::tag('h3', Html::encode('Total: '.$model->Total), ['class' => 'et1']);
+        ?>
+        </p>
 
     <?= $form->field($model, 'Credito')->textInput() ?>
 
