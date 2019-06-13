@@ -12,7 +12,7 @@ use dosamigos\datetimepicker\DateTimePicker;
 <div class="venta-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
+<!--
     <?= $form->field($model, 'Nodocumento')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
@@ -32,29 +32,29 @@ use dosamigos\datetimepicker\DateTimePicker;
                                                                             // 'format' => 'HH:ii P', // if inline = false
                                                                             'todayBtn' => true
                                                                         ]]) ?>
-<!--
+
+
+        <?= $form->field($model, 'Finalizada')->textInput() ?>
+
+         <?= $form->field($model, 'Cliente_id')->widget(Select2::classname(),[
+        'data' => $clts,
+        'options'=>['placeholder'=>'Seleccione el Cliente'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+-->
     <?= $form->field($model, 'Total')->textInput() ?>
 
     <?= $form->field($model, 'Credito')->textInput() ?>
 
     <?= $form->field($model, 'Contado')->textInput() ?>
 
-        <?= $form->field($model, 'Finalizada')->textInput() ?>
--->
-    <?= $form->field($model, 'Cliente_id')->widget(Select2::classname(),[
-        'data' => $clts,
-        'options'=>['placeholder'=>'Seleccione el Cliente'],
-        'pluginOptions'=>['allowClear=>true'],
-    ]) ?>
-     <?= Html::a(Yii::t('app', 'Registrar Cliente'), ['cliente/create', 'inv' => 2], ['class' => 'btn btn-primary']) ?>
 
-        
+   
     </p>
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Siguiente'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Cancelar'), ['venta/index'], ['class' => 'btn btn-danger']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Finalizar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

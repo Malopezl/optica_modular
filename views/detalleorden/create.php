@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Detalleorden */
 
-$this->title = Yii::t('app', 'Create Detalleorden');
+$this->title = Yii::t('app', 'Agregar Articulo');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Detalleordens'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,6 +15,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'id' => $id,
+            'ido' => $ido,
+            'reid' => $reid,
+            'liid' => $liid,
+            'ldid' => $ldid,
+            'arid' => $arid,
+            'op' => $op,
+            'lentes'=> $lentes,
+            'lentes1'=> $lentes1,
+            'aros'=> $aros,
     ]) ?>
 
 </div>
