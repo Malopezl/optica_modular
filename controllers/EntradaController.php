@@ -125,7 +125,7 @@ class EntradaController extends Controller
         $tmp = Mobyequipo::find()->all();
         foreach ($tmp as $mob) {
             $tmob = Depreciacion::findOne($mob->Depreciacion_id); 
-            $mobs[$mob->id]="Descripcion: ".$mob->Descripcion." ;Tipo: ".$tmob->Nombre;
+            $mobs[$mob->id]="Descripcion: ".$mob->Descripcion."; Tipo: ".$tmob->Nombre;
         }
         if($inv == 1)
         {
@@ -154,7 +154,7 @@ class EntradaController extends Controller
         $tmp = Lentesterm::find()->all();
         foreach ($tmp as $lente) {
             $material = Materiall::findOne($lente->Material_id); 
-            $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."Material: ".$material->Material;
+            $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Material: ".$material->Material;
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['inventario/mercaderia']);

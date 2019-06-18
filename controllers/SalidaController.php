@@ -133,7 +133,7 @@ class SalidaController extends Controller
         $tmp = Lentesterm::find()->all();
         foreach ($tmp as $lente) {
             $material = Materiall::findOne($lente->Material_id); 
-            $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."Material: ".$material->Material;
+            $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Material: ".$material->Material;
         }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['mobyequipo/index']);
