@@ -35,7 +35,7 @@ class Mobyequipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fechaCompra', 'Exostencia', 'Depreciacion_id'], 'required'],
+            [['fechaCompra', 'Existencia', 'Depreciacion_id'], 'required'],
             [['Descripcion'], 'string'],
             [['fechaCompra'], 'safe'],
             [['Precio_compra', 'Precio_venta'], 'number'],
