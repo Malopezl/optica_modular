@@ -18,6 +18,8 @@ use app\models\Marca;
 use app\models\Tipo;
 use app\models\Mobyequipo;
 use app\models\Depreciacion;
+use app\models\Empleado;
+
 /**
  * EntradaController implements the CRUD actions for Entrada model.
  */
@@ -93,7 +95,7 @@ class EntradaController extends Controller
         $model5 = Mobyequipo::findOne($model->Mobyequipo_id);
         
         return $this->render('view', [
-            'model' => $model,
+             'model' => $model,
             'model1' => $model1,
             'model11' => $model11,
             'model12' => $model12,
@@ -127,6 +129,11 @@ class EntradaController extends Controller
             $tmob = Depreciacion::findOne($mob->Depreciacion_id); 
             $mobs[$mob->id]="Descripcion: ".$mob->Descripcion."; Tipo: ".$tmob->Nombre;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if($inv == 1)
         {
             
@@ -139,10 +146,12 @@ class EntradaController extends Controller
                 'model' => $model,
                 'inv' => $inv,
                 'mobs' => $mobs,
+                'emps' => $emps,
             ]);
                
         }
     }
+    
     public function actionCreateinlst($id)
     {
         $model = new Entrada();
@@ -156,6 +165,11 @@ class EntradaController extends Controller
             $material = Materiall::findOne($lente->Material_id); 
             $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Material: ".$material->Material;
         }
+        $emps = [];
+       $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['inventario/mercaderia']);
         }
@@ -163,6 +177,7 @@ class EntradaController extends Controller
         return $this->render('createinlst', [
             'model' => $model,
             'lentes'=> $lentes,
+            'emps' => $emps,
         ]);
     }
      public function actionCreateinlt($id)
@@ -179,6 +194,11 @@ class EntradaController extends Controller
             $tipo = Tipo::findOne($lente->Tipo_id);
             $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Graduacion excedente: ".$lente->Graduacion_excedente."; Material: ".$material->Material."; Tipo:".$tipo->Tipo;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['inventario/mercaderia']);
         }
@@ -186,6 +206,7 @@ class EntradaController extends Controller
         return $this->render('createinlt', [
             'model' => $model,
             'lentes'=> $lentes,
+            'emps' => $emps,
         ]);
     }
     public function actionCreateinar($id)
@@ -202,13 +223,16 @@ class EntradaController extends Controller
             $marca = Marca::findOne($aro->Marca_id);
             $aros[$aro->id]="Marca: ".$marca->Nombre."; Codigo: ".$aro->Codigo."; Material: ".$material->Nombre;
         }
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['inventario/mercaderia']);
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
         }
 
         return $this->render('createinar', [
             'model' => $model,
             'aros'=> $aros,
+            'emps' => $emps,
         ]);
     }
     public function actionCreateinacc($id)
@@ -223,6 +247,11 @@ class EntradaController extends Controller
         foreach ($tmp as $acce) {
             $acces[$acce->id]="Nombre: ".$acce->Nombre."; Descripcion: ".$acce->Descripcion;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['inventario/mercaderia']);
         }
@@ -230,9 +259,9 @@ class EntradaController extends Controller
         return $this->render('createinacc', [
             'model' => $model,
             'acces'=> $acces,
+            'emps' => $emps,
         ]);
     }
-
 
     /**
      * Updates an existing Entrada model.
@@ -253,7 +282,7 @@ class EntradaController extends Controller
             'model' => $model,
         ]);
     }
-
+    
     /**
      * Deletes an existing Entrada model.
      * If deletion is successful, the browser will be redirected to the 'index' page.

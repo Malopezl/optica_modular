@@ -10,6 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Detallecotizacion;
 use app\models\DetallecotizacionSearch;
+use app\models\Empleado;
+
+/**
 /**
  * CotizacionController implements the CRUD actions for Cotizacion model.
  */
@@ -53,11 +56,10 @@ class CotizacionController extends Controller
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+         $model = $this->findModel($id);
         $searchModel = new DetallecotizacionSearch();
         $searchModel->Cotizacion_id = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
         return $this->render('view', [
             'model' => $model,
             'searchModel' => $searchModel,
@@ -74,12 +76,18 @@ class CotizacionController extends Controller
     {
         $model = new Cotizacion();
         $model->Total = 0;
+         $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['creates', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'emps' => $emps,
         ]);
     }
     public function actionCreates($id)

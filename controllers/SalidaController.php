@@ -18,6 +18,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Mobyequipo;
 use app\models\Depreciacion;
+use app\models\Empleado;
+
 /**
  * SalidaController implements the CRUD actions for Salida model.
  */
@@ -59,7 +61,7 @@ class SalidaController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id, $inv)
+      public function actionView($id, $inv)
     {
        $model11 = null;
         $model12 = null;
@@ -108,7 +110,6 @@ class SalidaController extends Controller
             'inv' => $inv,
         ]);
     }
-
     /**
      * Creates a new Salida model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -135,6 +136,11 @@ class SalidaController extends Controller
             $material = Materiall::findOne($lente->Material_id); 
             $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Material: ".$material->Material;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['mobyequipo/index']);
         }
@@ -142,6 +148,7 @@ class SalidaController extends Controller
         return $this->render('createinlst', [
             'model' => $model,
             'lentes'=> $lentes,
+            'emps' => $emps,
         ]);
     }
      public function actionCreateinlt()
@@ -154,6 +161,11 @@ class SalidaController extends Controller
             $tipo = Tipo::findOne($lente->Tipo_id);
             $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."; Graduacion excedente: ".$lente->Graduacion_excedente."; Material: ".$material->Material."; Tipo:".$tipo->Tipo;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['mobyequipo/index']);
         }
@@ -161,6 +173,7 @@ class SalidaController extends Controller
         return $this->render('createinlt', [
             'model' => $model,
             'lentes' => $lentes,
+            'emps' => $emps,
         ]);
     }
      public function actionCreateinar()
@@ -173,6 +186,11 @@ class SalidaController extends Controller
             $marca = Marca::findOne($aro->Marca_id);
             $aros[$aro->id]="Marca: ".$marca->Nombre."; Codigo: ".$aro->Codigo."; Material: ".$material->Nombre;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['mobyequipo/index']);
         }
@@ -180,6 +198,7 @@ class SalidaController extends Controller
         return $this->render('createinar', [
             'model' => $model,
             'aros'=> $aros,
+            'emps' => $emps,
         ]);
     }
      public function actionCreateinacc()
@@ -190,6 +209,11 @@ class SalidaController extends Controller
         foreach ($tmp as $acce) {
             $acces[$acce->id]="Nombre: ".$acce->Nombre."; Descripcion: ".$acce->Descripcion;
         }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['mobyequipo/index']);
         }
@@ -197,8 +221,10 @@ class SalidaController extends Controller
         return $this->render('createinacc', [
             'model' => $model,
             'acces' => $acces,
+            'emps' => $emps,
         ]);
     }
+
 
 
     /**
