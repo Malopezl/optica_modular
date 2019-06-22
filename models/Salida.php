@@ -17,9 +17,11 @@ use Yii;
  * @property int $Accesorios_id
  * @property int $Aro_id
  * @property string $Nodocumento
+ * @property int $Empleado_id
  *
  * @property Accesorios $accesorios
  * @property Aro $aro
+ * @property Empleado $empleado
  * @property Lentesterm $lentesterm
  * @property Lenteterm $lenteterm
  * @property Mobyequipo $mobyequipo
@@ -40,13 +42,14 @@ class Salida extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Fecha', 'Cantidad', 'Encargado', 'Nodocumento'], 'required'],
             [['Fecha'], 'safe'],
-            [['Cantidad', 'Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id'], 'integer'],
+            [['Cantidad', 'Mobyequipo_id', 'Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id', 'Empleado_id'], 'integer'],
+            [['Empleado_id','Fecha','Nodocumento'], 'required'],
             [['Encargado'], 'string', 'max' => 100],
             [['Nodocumento'], 'string', 'max' => 45],
             [['Accesorios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['Accesorios_id' => 'id']],
             [['Aro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aro::className(), 'targetAttribute' => ['Aro_id' => 'id']],
+            [['Empleado_id'], 'exist', 'skipOnError' => true, 'targetClass' => Empleado::className(), 'targetAttribute' => ['Empleado_id' => 'id']],
             [['Lentesterm_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lentesterm::className(), 'targetAttribute' => ['Lentesterm_id' => 'id']],
             [['Lenteterm_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lenteterm::className(), 'targetAttribute' => ['Lenteterm_id' => 'id']],
             [['Mobyequipo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Mobyequipo::className(), 'targetAttribute' => ['Mobyequipo_id' => 'id']],
@@ -68,7 +71,8 @@ class Salida extends \yii\db\ActiveRecord
             'Lentesterm_id' => 'Lente Semiterminado',
             'Accesorios_id' => 'Accesorio',
             'Aro_id' => 'Aro',
-            'Nodocumento' => 'No de Documento',
+            'Nodocumento' => 'No de documento',
+            'Empleado_id' => 'Encargado',
         ];
     }
 
@@ -86,6 +90,14 @@ class Salida extends \yii\db\ActiveRecord
     public function getAro()
     {
         return $this->hasOne(Aro::className(), ['id' => 'Aro_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmpleado()
+    {
+        return $this->hasOne(Empleado::className(), ['id' => 'Empleado_id']);
     }
 
     /**

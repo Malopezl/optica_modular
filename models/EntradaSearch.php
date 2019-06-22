@@ -17,7 +17,7 @@ class EntradaSearch extends Entrada
     public function rules()
     {
         return [
-            [['id', 'Aro_id', 'Accesorios_id', 'Lentesterm_id', 'Lenteterm_id', 'Mobyequipo_id', 'Cantidad'], 'integer'],
+            [['id', 'Aro_id', 'Accesorios_id', 'Lentesterm_id', 'Lenteterm_id', 'Mobyequipo_id', 'Cantidad', 'Empleado_id'], 'integer'],
             [['Nodocumento', 'Encargado', 'Fecha'], 'safe'],
             [['Precio'], 'number'],
         ];
@@ -68,6 +68,7 @@ class EntradaSearch extends Entrada
             'Cantidad' => $this->Cantidad,
             'Precio' => $this->Precio,
             'Fecha' => $this->Fecha,
+            'Empleado_id' => $this->Empleado_id,
         ]);
 
         $query->andFilterWhere(['like', 'Nodocumento', $this->Nodocumento])

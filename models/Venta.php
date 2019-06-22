@@ -16,10 +16,13 @@ use Yii;
  * @property int $Cliente_id
  * @property string $Encargado
  * @property int $Finalizada
+ * @property int $Entregada
+ * @property int $Empleado_id
  *
  * @property Detalleventa[] $detalleventas
  * @property Orden[] $ordens
  * @property Cliente $cliente
+ * @property Empleado $empleado
  */
 class Venta extends \yii\db\ActiveRecord
 {
@@ -39,9 +42,11 @@ class Venta extends \yii\db\ActiveRecord
         return [
             [['Fecha'], 'safe'],
             [['Total', 'Credito', 'Contado'], 'number'],
-            [['Cliente_id', 'Finalizada'], 'integer'],
+            [['Cliente_id', 'Finalizada', 'Entregada', 'Empleado_id'], 'integer'],
+            [['Empleado_id','Cliente_id','Fecha','Nodocumento'], 'required'],
             [['Nodocumento', 'Encargado'], 'string', 'max' => 100],
             [['Cliente_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cliente::className(), 'targetAttribute' => ['Cliente_id' => 'id']],
+            [['Empleado_id'], 'exist', 'skipOnError' => true, 'targetClass' => Empleado::className(), 'targetAttribute' => ['Empleado_id' => 'id']],
         ];
     }
 
@@ -52,14 +57,16 @@ class Venta extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Nodocumento' => 'Nodocumento',
+            'Nodocumento' => 'No de documento',
             'Fecha' => 'Fecha',
             'Total' => 'Total',
             'Credito' => 'Credito',
             'Contado' => 'Contado',
-            'Cliente_id' => 'Cliente ID',
+            'Cliente_id' => 'Cliente',
             'Encargado' => 'Encargado',
             'Finalizada' => 'Finalizada',
+            'Entregada' => 'Entregada',
+            'Empleado_id' => 'Encargado',
         ];
     }
 
@@ -85,5 +92,13 @@ class Venta extends \yii\db\ActiveRecord
     public function getCliente()
     {
         return $this->hasOne(Cliente::className(), ['id' => 'Cliente_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmpleado()
+    {
+        return $this->hasOne(Empleado::className(), ['id' => 'Empleado_id']);
     }
 }

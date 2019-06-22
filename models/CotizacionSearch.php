@@ -17,7 +17,7 @@ class CotizacionSearch extends Cotizacion
     public function rules()
     {
         return [
-            [['id'], 'integer'],
+            [['id', 'Empleado_id'], 'integer'],
             [['Encargado', 'Fecha', 'Detalles', 'Nodocumento'], 'safe'],
             [['Total'], 'number'],
         ];
@@ -62,6 +62,7 @@ class CotizacionSearch extends Cotizacion
             'id' => $this->id,
             'Fecha' => $this->Fecha,
             'Total' => $this->Total,
+            'Empleado_id' => $this->Empleado_id,
         ]);
 
         $query->andFilterWhere(['like', 'Encargado', $this->Encargado])

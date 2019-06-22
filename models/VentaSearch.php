@@ -17,7 +17,7 @@ class VentaSearch extends Venta
     public function rules()
     {
         return [
-            [['id', 'Cliente_id', 'Finalizada'], 'integer'],
+            [['id', 'Cliente_id', 'Finalizada', 'Entregada', 'Empleado_id'], 'integer'],
             [['Nodocumento', 'Fecha', 'Encargado'], 'safe'],
             [['Total', 'Credito', 'Contado'], 'number'],
         ];
@@ -66,6 +66,8 @@ class VentaSearch extends Venta
             'Contado' => $this->Contado,
             'Cliente_id' => $this->Cliente_id,
             'Finalizada' => $this->Finalizada,
+            'Entregada' => $this->Entregada,
+            'Empleado_id' => $this->Empleado_id,
         ]);
 
         $query->andFilterWhere(['like', 'Nodocumento', $this->Nodocumento])
