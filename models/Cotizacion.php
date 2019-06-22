@@ -13,7 +13,9 @@ use Yii;
  * @property double $Total
  * @property string $Detalles
  * @property string $Nodocumento
+ * @property int $Empleado_id
  *
+ * @property Empleado $empleado
  * @property Detallecotizacion[] $detallecotizacions
  */
 class Cotizacion extends \yii\db\ActiveRecord
@@ -35,7 +37,10 @@ class Cotizacion extends \yii\db\ActiveRecord
             [['Fecha'], 'safe'],
             [['Total'], 'number'],
             [['Detalles'], 'string'],
+            [['Empleado_id','Fecha','Nodocumento'], 'required'],
+            [['Empleado_id'], 'integer'],
             [['Encargado', 'Nodocumento'], 'string', 'max' => 100],
+            [['Empleado_id'], 'exist', 'skipOnError' => true, 'targetClass' => Empleado::className(), 'targetAttribute' => ['Empleado_id' => 'id']],
         ];
     }
 
@@ -50,8 +55,17 @@ class Cotizacion extends \yii\db\ActiveRecord
             'Fecha' => 'Fecha',
             'Total' => 'Total',
             'Detalles' => 'Detalles',
-            'Nodocumento' => 'Nodocumento',
+            'Nodocumento' => 'No de documento',
+            'Empleado_id' => 'Encargado',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEmpleado()
+    {
+        return $this->hasOne(Empleado::className(), ['id' => 'Empleado_id']);
     }
 
     /**
