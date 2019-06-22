@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
  </p>
      <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <p><li><label>Ingreso:</label></li></p>
+    <h3>Ingresos:</h3>
   	<?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -22,16 +22,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-            'Fecha',
             'Nodocumento',
-            'Encargado',
+            //'Encargado',
             //'Aro_id',
             //'Accesorios_id',
             //'Lentesterm_id',
             //'Lenteterm_id',
             //'Mobyequipo_id',
             'Cantidad',
-            //'Precio',
+            'Precio',
+            'Fecha',
+            //'Empleado_id',
   
             ['class' => 'yii\grid\ActionColumn',
             'template'=>'{view}',
@@ -56,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
      <hr>
      <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <p><li><label>Salida:</label></li></p>
+    <h3>Salidas:</h3>
   
   	<?= GridView::widget([
         'dataProvider' => $dataProvider1,

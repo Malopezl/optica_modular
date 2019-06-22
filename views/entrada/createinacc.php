@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' 
     <?= $this->render('_forminacc', [
         'model' => $model,
         'acces'=> $acces,
+        'emps' => $emps,
     ]) ?>
 
 </div>

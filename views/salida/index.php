@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Accesorios_id',
             //'Aro_id',
             //'Nodocumento',
+            //'Empleado_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

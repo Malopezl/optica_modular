@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Cantidad',
             //'Precio',
             //'Fecha',
+            //'Empleado_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

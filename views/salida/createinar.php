@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_forminar', [
         'model' => $model,
         'aros' => $aros,
+        'emps' => $emps,
     ]) ?>
 
 </div>

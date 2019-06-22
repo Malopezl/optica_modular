@@ -20,7 +20,8 @@ $this->title = Yii::t('app', 'Inventario');
     <hr>
 
     <p>
-        <?= Html::img('@web/img/infoi1.jpg', ['alt'=>'some', 'class'=>'thing', 'width'=>'1140px', 'height'=>'600px']);?>
+
+         <?= Html::img('@web/img/infoi1.jpg', ['alt'=>'some', 'class'=>'thing']);?>
     </p>
 </p>
 <div class="inventario-index">

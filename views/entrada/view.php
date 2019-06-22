@@ -30,12 +30,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <p>
     <?php echo Html::a(Yii::t('app', 'Regresar'), ['inventario/ingeg'], ['class' => 'btn btn-primary']); ?>
  </p>
+ <h3>Detalles de Ingreso:</h3>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             //'id',
             'Nodocumento',
-            'Encargado',
+            //'Encargado',
             //'Aro_id',
             //'Accesorios_id',
             //'Lentesterm_id',
@@ -44,12 +45,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'Cantidad',
             'Precio',
             'Fecha',
+            //'Empleado_id',
         ],
     ]) ?>
-     <p><li><label>Aro:</label></li></p>
+
+</div>
+
     <?php 
     if($model->Aro_id != null)
     {
+        echo Html::tag('h3', Html::encode('Aro:'), ['class' => 'et1']);
+
         echo DetailView::widget([
         'model' => $model4,
         'attributes' => [
@@ -79,10 +85,10 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ;
     }
     ?>
-    <p><li><label>Accesorio:</label></li></p>
     <?php 
     if($model->Accesorios_id != null)
     {
+        echo Html::tag('h3', Html::encode('Accesorio:'), ['class' => 'et1']);
         echo DetailView::widget([
         'model' => $model3,
         'attributes' => [
@@ -98,10 +104,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     }
     ?>
-    <p><li><label>Lente Semiterminado:</label></li></p>
     <?php 
     if($model->Lentesterm_id != null)
     {
+        echo Html::tag('h3', Html::encode('Lente Semiterminado:'), ['class' => 'et1']);
         echo DetailView::widget([
         'model' => $model2,
         'attributes' => [
@@ -130,10 +136,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
     }
     ?>
-    <p><li><label>Lente Terminado:</label></li></p>
     <?php 
     if($model->Lenteterm_id != null)
     {
+        echo Html::tag('h3', Html::encode('Lente Terminado'), ['class' => 'et1']);
         echo DetailView::widget([
         'model' => $model1,
         'attributes' => [
@@ -163,10 +169,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
     }
     ?>
-    <p><li><label>Mobiliario y Equipo:</label></li></p>
     <?php 
     if($model->Mobyequipo_id != null)
     {
+        echo Html::tag('h3', Html::encode('Mobiliario y Equipo:'), ['class' => 'et1']);
         echo DetailView::widget([
         'model' => $model5,
         'attributes' => [
