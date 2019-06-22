@@ -15,8 +15,6 @@ use dosamigos\datetimepicker\DateTimePicker;
 
     <?= $form->field($model, 'Nodocumento')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
                                                                         'language' => 'es',
                                                                         'size' => 'ms',
@@ -32,6 +30,7 @@ use dosamigos\datetimepicker\DateTimePicker;
                                                                             // 'format' => 'HH:ii P', // if inline = false
                                                                             'todayBtn' => true
                                                                         ]]) ?>
+
 <!--
     <?= $form->field($model, 'Total')->textInput() ?>
 
@@ -40,21 +39,26 @@ use dosamigos\datetimepicker\DateTimePicker;
     <?= $form->field($model, 'Contado')->textInput() ?>
 
         <?= $form->field($model, 'Finalizada')->textInput() ?>
+
+    <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Entregada')->textInput() ?>
 -->
+
     <?= $form->field($model, 'Cliente_id')->widget(Select2::classname(),[
         'data' => $clts,
         'options'=>['placeholder'=>'Seleccione el Cliente'],
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
-     <?= Html::a(Yii::t('app', 'Registrar Cliente'), ['cliente/create', 'inv' => 2], ['class' => 'btn btn-primary']) ?>
 
-        
-    </p>
-
+    <?= $form->field($model, 'Empleado_id')->widget(Select2::classname(),[
+        'data' => $emps,
+        'options'=>['placeholder'=>'Seleccione al Encargado'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Siguiente'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Cancelar'), ['venta/index'], ['class' => 'btn btn-danger']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

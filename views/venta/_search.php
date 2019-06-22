@@ -36,6 +36,10 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'Finalizada') ?>
 
+    <?php // echo $form->field($model, 'Entregada') ?>
+
+    <?php // echo $form->field($model, 'Empleado_id') ?>
+
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>

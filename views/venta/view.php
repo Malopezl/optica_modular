@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-           // 'id',
+            'id',
             'Nodocumento',
             'Fecha',
             'Total',
@@ -44,6 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'Cliente_id',
             'Encargado',
             'Finalizada',
+            'Entregada',
+            'Empleado_id',
         ],
     ]) ?>
     <?php Pjax::begin(); ?>

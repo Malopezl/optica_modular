@@ -31,12 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-            'Nodocumento',
-            'Encargado',
+            //'Encargado',
             'Fecha',
             'Total',
             'Detalles:ntext',
-            
+            'Nodocumento',
+            //'Empleado_id',
 
             ['class' => 'yii\grid\ActionColumn',
             'template'=>'{view}',

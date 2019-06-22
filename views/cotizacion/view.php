@@ -32,16 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Inicio'), ['cotizacion/index'], ['class' => 'btn btn-danger']) ?>    
     </p>
-    
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            //'id',
+            'id',
             'Encargado',
             'Fecha',
             'Total',
             'Detalles:ntext',
             'Nodocumento',
+            'Empleado_id',
         ],
     ]) ?>
     <p>

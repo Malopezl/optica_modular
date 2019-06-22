@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+
 use kartik\select2\Select2;
 use dosamigos\datetimepicker\DateTimePicker;
 /* @var $this yii\web\View */
@@ -15,27 +16,7 @@ use dosamigos\datetimepicker\DateTimePicker;
 
     <?= $form->field($model, 'Nodocumento')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
-<!--
-    <?= $form->field($model, 'Aro_id')->textInput() ?>
-
-    <?= $form->field($model, 'Accesorios_id')->textInput() ?>
-
-    <?= $form->field($model, 'Lentesterm_id')->textInput() ?>
-
-    <?= $form->field($model, 'Lenteterm_id')->textInput() ?>
--->
-    <?= $form->field($model, 'Mobyequipo_id')->widget(Select2::classname(),[
-        'data' => $mobs,
-        'options'=>['placeholder'=>'Seleccione el Accesorio'],
-        'pluginOptions'=>['allowClear=>true'],
-    ]) ?>
-
-    <?= $form->field($model, 'Cantidad')->textInput() ?>
-
-    <?= $form->field($model, 'Precio')->textInput() ?>
-
-    <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
+     <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
                                                                         'language' => 'es',
                                                                         'size' => 'ms',
                                                                         //'template' => '{input}',
@@ -50,7 +31,41 @@ use dosamigos\datetimepicker\DateTimePicker;
                                                                             // 'format' => 'HH:ii P', // if inline = false
                                                                             'todayBtn' => true
                                                                         ]]) ?>
+
+
+
     <br>
+    
+    <?= $form->field($model, 'Empleado_id')->widget(Select2::classname(),[
+        'data' => $emps,
+        'options'=>['placeholder'=>'Seleccione al Encargado'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+
+<!--
+    <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'Aro_id')->textInput() ?>
+
+    <?= $form->field($model, 'Accesorios_id')->textInput() ?>
+
+    <?= $form->field($model, 'Lentesterm_id')->textInput() ?>
+
+    <?= $form->field($model, 'Lenteterm_id')->textInput() ?>
+-->
+
+    <?= $form->field($model, 'Mobyequipo_id')->widget(Select2::classname(),[
+        'data' => $mobs,
+        'options'=>['placeholder'=>'Seleccione el Accesorio'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+
+    <?= $form->field($model, 'Cantidad')->textInput() ?>
+
+    <?= $form->field($model, 'Precio')->textInput() ?>
+
+   
+
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>

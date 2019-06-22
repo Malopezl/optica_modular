@@ -15,7 +15,14 @@ use dosamigos\datetimepicker\DateTimePicker;
 
     <?= $form->field($model, 'Nodocumento')->textInput(['maxlength' => true]) ?>
 
+   <?= $form->field($model, 'Empleado_id')->widget(Select2::classname(),[
+        'data' => $emps,
+        'options'=>['placeholder'=>'Seleccione al Encargado'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+<!--
     <?= $form->field($model, 'Encargado')->textInput(['maxlength' => true]) ?>
+-->
 
    <?= $form->field($model, 'Fecha')->widget(DateTimePicker::className(), [
                                                                         'language' => 'es',
