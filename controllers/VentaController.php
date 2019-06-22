@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+
 use Yii;
 use app\models\Venta;
 use app\models\VentaSearch;
@@ -13,6 +14,8 @@ use app\models\Orden;
 use app\models\OrdenSearch;
 use app\models\Detalleventa;
 use app\models\DetalleventaSearch;
+use app\models\Empleado;
+
 /**
  * VentaController implements the CRUD actions for Venta model.
  */
@@ -93,7 +96,11 @@ class VentaController extends Controller
         foreach ($tmp as $clt) {
             $clts[$clt->id]="Nombre: ".$clt->Nombre."; NIT: ".$clt->NIT."; Saldo: ".$clt->Saldo;
         }
-
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['creates', 'id' => $model->id]);
         }
@@ -101,6 +108,7 @@ class VentaController extends Controller
         return $this->render('create', [
             'model' => $model,
             'clts' => $clts,
+            'emps' => $emps,
         ]);
     }
     public function actionCreates($id)
@@ -152,6 +160,7 @@ class VentaController extends Controller
             'clts' => $clts,
         ]);
     }
+
     /**
      * Updates an existing Venta model.
      * If update is successful, the browser will be redirected to the 'view' page.
