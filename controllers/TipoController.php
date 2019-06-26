@@ -63,15 +63,24 @@ class TipoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($inv, $invo)
+    public function actionCreate($inv, $invo, $op, $ido)
     {
         $model = new Tipo();
 
         if($invo == 1)
         {
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if($inv == 1)
+            {
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 return $this->redirect(['lentesterm/create', 'inv' => $invo]);
+                } 
             }
+            else if($inv == 2)
+            {
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['lenteterm/create', 'inv' => $invo]);
+                } 
+            } 
 
         }
         else if($invo == 2)
@@ -80,10 +89,27 @@ class TipoController extends Controller
                 return $this->redirect(['inventario/detalles']);
             }
         }
+        else if($invo == 3)
+        {
+            if($inv == 1)
+            {
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['lentesterm/createc','inv' => $invo, 'ido' => $ido,'op' => $op]);
+                }  
+            }
+            else if($inv == 2)
+            {
+                if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['lenteterm/createc','inv' => $invo, 'ido' => $ido,'op' => $op]);
+                } 
+            } 
+        }
         return $this->render('create', [
             'model' => $model,
             'invo'=>$invo,
             'inv' => $inv,
+            'op' => $op,
+            'ido' => $ido,
         ]);
     }
 

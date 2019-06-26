@@ -101,6 +101,39 @@ class AroController extends Controller
             'inv' => $inv,
         ]);
     }
+    public function actionCreatec($inv, $ido, $op)
+    {
+        $model = new Aro();
+        $model->Precio_compra = 0 ;
+        $model->Existencia = 0 ;
+        $model->Precio_venta = 0 ;
+        $mats = [];
+        $tmp = Materiala::find()->all();
+        foreach ($tmp as $mat) { 
+            $mats[$mat->id]="Material: ".$mat->Nombre;
+        }
+        $mars = [];
+        $tmp1 = Marca::find()->all();
+        foreach ($tmp1 as $mar) { 
+            $mars[$mar->id]="Marca: ".$mar->Nombre;
+        }
+        if($inv == 3)
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/create','id'=> $ido, 'op'=>$op , 'idp' => $model->id]);
+            }   
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'mats'=> $mats,
+            'mars' => $mars,
+            'inv' => $inv,
+            'ido' => $ido,
+            'op' => $op,
+        ]);
+    }
 
     /**
      * Updates an existing Aro model.

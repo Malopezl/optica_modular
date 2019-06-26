@@ -101,6 +101,40 @@ class LentestermController extends Controller
             'tips' => $tips,
         ]);
     }
+    public function actionCreatec($inv, $ido, $op)
+    {
+        $model = new Lentesterm();
+        $model->Porcentaje_ganancia = 0;
+        $model->Precio_compra = 0;
+        $model->Precio_venta = 0;
+        $model->Existencia = 0;
+        $mats = [];
+        $tmp = Materiall::find()->all();
+        foreach ($tmp as $mat) { 
+            $mats[$mat->id]="Material: ".$mat->Material;
+        }
+        $tips = [];
+        $tmp1 = Tipo::find()->all();
+        foreach ($tmp1 as $tip) { 
+            $tips[$tip->id]="Tipo: ".$tip->Tipo;
+        }
+        if($inv == 3)
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/create','id'=> $ido, 'op'=>$op , 'idp' => $model->id]);
+            }   
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'inv' => $inv,
+            'mats' => $mats,
+            'tips' => $tips,
+            'ido' => $ido,
+            'op' => $op,
+        ]);
+    }
 
     /**
      * Updates an existing Lentesterm model.

@@ -71,6 +71,7 @@ class ComprasController extends Controller
         $model->Total = 0 ;
         $model->Contado = 0 ;
         $model->Credito = 0;
+
         if($idp != 0)
         {
             $model->Proveedores_id = $idp;
@@ -97,7 +98,9 @@ class ComprasController extends Controller
     }
     public function actionCreates($id)
     {
+
         $model = $this->findModel($id);
+        $model->Total =1;
         $searchModel = new DetallecompraSearch();
         $searchModel->Compras_id=$id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams); 
@@ -107,6 +110,29 @@ class ComprasController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'id' => $id,
+        ]);
+    }
+    public function actionCreatef($id)
+    {
+        $model = $this->findModel($id);
+         $provs = [];
+        $tmp = Proveedores::find()->all();
+        foreach ($tmp as $prov) {
+            $provs[$prov->id]="Nombre: ".$prov->Nombre."; NIT: ".$prov->NIT;
+        }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index', 'id' => $model->id]);
+        }
+
+        return $this->render('createf', [
+            'model' => $model,
+            'provs' => $provs,
+            'emps' => $emps,
         ]);
     }
     /**
