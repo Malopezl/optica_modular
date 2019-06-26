@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Marcas de Aros:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['marca/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['marca/create', 'inv'=>0,'invo'=>2,'op'=> 0, 'ido'=>0], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -55,7 +55,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Material de Aros:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['materiala/create',  'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['materiala/create',  'inv'=>0,'invo'=>2,'op'=> 0, 'ido'=>0], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider1,
@@ -90,7 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Material de Lentes:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['materiall/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['materiall/create', 'inv'=>0,'invo'=>2,'op'=> 0, 'ido'=>0], ['class' => 'btn btn-primary']) ?>
      </p>
 
     <?= GridView::widget([
@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <p><li><label>Tipos de Lentes:</label></li></p>
     <p>
-        <?= Html::a(Yii::t('app', 'Registro'), ['Tipo/create', 'inv'=>0,'invo'=>2], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Registro'), ['Tipo/create', 'inv'=>0,'invo'=>2,'op'=> 0, 'ido'=>0], ['class' => 'btn btn-primary']) ?>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider3,

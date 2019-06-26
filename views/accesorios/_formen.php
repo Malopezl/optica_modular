@@ -28,7 +28,15 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Cancelar'), ['entrada/createinacc', 'id' => 0], ['class' => 'btn btn-danger']) ?>
+        <?php 
+        if($inv == 1){
+            echo Html::a(Yii::t('app', 'Cancelar'), ['entrada/createinacc', 'id' => 0], ['class' => 'btn btn-danger']);
+        }
+        else if($inv == 3)
+        {
+             echo  Html::a(Yii::t('app', 'Cancelar'), ['detallecompra/create','id'=> $ido, 'op'=>$op , 'idp' => 0], ['class' => 'btn btn-danger']);
+        }
+        ?>
     </div>
 
     <?php ActiveForm::end(); ?>
