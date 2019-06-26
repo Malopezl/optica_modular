@@ -28,7 +28,7 @@ use dosamigos\datetimepicker\DateTimePicker;
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
     <p>
-    <?= Html::a(Yii::t('app', 'Registrar Nuevo Material'), ['materiala/create', 'inv'=>1, 'invo'=>$inv], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a(Yii::t('app', 'Registrar Nuevo Material'), ['materiala/create', 'inv'=>1, 'invo'=>$inv, 'op'=>$op , 'idp' => 0,'ido'=> $ido], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= $form->field($model, 'Marca_id')->widget(Select2::classname(),[
@@ -37,14 +37,24 @@ use dosamigos\datetimepicker\DateTimePicker;
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
     <p>
-    <?= Html::a(Yii::t('app', 'Registrar Nueva Marca'), ['marca/create', 'inv'=>1, 'invo'=>$inv], ['class' => 'btn btn-primary']) ?>
+    <?= Html::a(Yii::t('app', 'Registrar Nueva Marca'), ['marca/create', 'inv'=>1, 'invo'=>$inv, 'op'=>$op ,'ido'=> $ido], ['class' => 'btn btn-primary']) ?>
     </p>
 
     
     <?= $form->field($model, 'Porcentaje_ganancia')->textInput() ?>
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Cancelar'), ['entrada/createinlst', 'id' => 0], ['class' => 'btn btn-danger']) ?>
+        <?php 
+        if ($inv == 1)
+        {
+            echo  Html::a(Yii::t('app', 'Cancelar'), ['entrada/createinlst', 'id' => 0], ['class' => 'btn btn-danger']);
+        }
+        else if($inv == 3)
+        {
+             echo  Html::a(Yii::t('app', 'Cancelar'), ['detallecompra/create','id'=> $ido, 'op'=>$op , 'idp' => 0], ['class' => 'btn btn-danger']);
+        }
+
+        ?>
     </div>
 
     <?php ActiveForm::end(); ?>

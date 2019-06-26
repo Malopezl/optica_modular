@@ -19,7 +19,7 @@ if($inv == 1)
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php 
-    	if($inv = 1)
+    	if($inv == 1)
     	{
             
     		echo $this->render('_formen', [
@@ -27,8 +27,22 @@ if($inv == 1)
 		        'inv' => $inv,
 		        'mats' => $mats,
 		        'tips' => $tips,
+                'ido' => 0,
+                'op' => 0,
 		    ]);
-    	}	
+    	}
+        else if($inv == 3)
+        {
+            
+            echo $this->render('_formen', [
+                'model' => $model,
+                'inv' => $inv,
+                'mats' => $mats,
+                'tips' => $tips,
+                'ido' => $ido,
+                'op' => $op,
+            ]);
+        }   	
     ?>
 
 </div>

@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     if($model->Total != 0)
     {
-    	echo Html::a(Yii::t('app', 'Finalizar'), ['venta/createf', 'id' =>$id], ['class' => 'btn btn-success']);
+    	echo Html::a(Yii::t('app', 'Finalizar'), ['compras/createf', 'id' =>$id], ['class' => 'btn btn-success']);
     } 
 
      ?>
@@ -40,15 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php //echo $this->render('_search', ['model' => $searchModel]); 
     	echo Html::tag('h3', Html::encode('Detalle Compra'), ['class' => 'et1']);
     	echo "   ";
-        echo Html::a(Yii::t('app', 'Agregar Lente Temrinado'), ['detallecompra/create', 'id' => $id, 'op' => 1], ['class' => 'btn btn-primary']);
+        echo Html::a(Yii::t('app', 'Agregar Lente Terminado'), ['detallecompra/create', 'id' => $id, 'op' => 1, 'idp' => 0], ['class' => 'btn btn-primary']);
         echo "   ";
-        echo Html::a(Yii::t('app', 'Agregar Lente Semitemrinado'), ['detallecompra/create', 'id' => $id, 'op' => 2], ['class' => 'btn btn-primary']);
+        echo Html::a(Yii::t('app', 'Agregar Lente Semiterminado'), ['detallecompra/create', 'id' => $id, 'op' => 2, 'idp' => 0], ['class' => 'btn btn-primary']);
         echo "   ";
-        echo Html::a(Yii::t('app', 'Agregar Aros'), ['detallecompra/create', 'id' => $id, 'op' =>  3], ['class' => 'btn btn-primary']);
+        echo Html::a(Yii::t('app', 'Agregar Aros'), ['detallecompra/create', 'id' => $id, 'op' =>  3, 'idp' => 0], ['class' => 'btn btn-primary']);
         echo "   ";
-        echo Html::a(Yii::t('app', 'Agregar Accesorios'), ['detallecompra/create', 'id' => $id, 'op' => 4], ['class' => 'btn btn-primary']);
+        echo Html::a(Yii::t('app', 'Agregar Accesorios'), ['detallecompra/create', 'id' => $id, 'op' => 4, 'idp' => 0], ['class' => 'btn btn-primary']);
         echo "   ";
-        echo Html::a(Yii::t('app', 'Agregar Mobiliario y Equipo '), ['detallecompra/create', 'id' => $id, 'op' => 5], ['class' => 'btn btn-primary']);
+        echo Html::a(Yii::t('app', 'Agregar Mobiliario y Equipo '), ['detallecompra/create', 'id' => $id, 'op' => 5, 'idp' => 0], ['class' => 'btn btn-primary']);
         ?>
         </p>
     <?php
@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'template'=>'{view}',
             'buttons'=>[
              'view' => function ($url, $model) {
-                $url = '/orden/view?id='.$model->id.'&inv=2&idi='.$model->Venta_id;
+                $url = '/orden/view?id='.$model->id.'&inv=2&idi='.$model->Compras_id;
                 return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, [
                             'title' =>'Ver'
                 ]);

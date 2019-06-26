@@ -25,6 +25,10 @@ use yii\widgets\ActiveForm;
             {
                 echo Html::a(Yii::t('app', 'Cancelar'), ['inventario/detalles'], ['class' => 'btn btn-danger']);
             }
+            else if($invo == 3)
+            {
+                echo Html::a(Yii::t('app', 'Cancelar'), ['aro/createc','inv' => $invo, 'ido' => $ido,'op' => $op], ['class' => 'btn btn-danger']);
+            }
          ?>
     </div>
 
