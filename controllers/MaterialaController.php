@@ -63,7 +63,7 @@ class MaterialaController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($inv, $invo)
+    public function actionCreate($inv, $invo, $op, $ido)
     {
         $model = new Materiala();
         if($invo == 1)
@@ -80,11 +80,20 @@ class MaterialaController extends Controller
                 return $this->redirect(['inventario/detalles']);
             }   
         }
+        else if($invo == 3)
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['aro/createc','inv' => $invo, 'ido' => $ido,'op' => $op]);
+            }   
+        }
 
         return $this->render('create', [
             'model' => $model,
             'invo' => $invo,
             'inv' => $inv,
+            'ido' => $ido,
+            'op' => $op,
         ]);
     }
 

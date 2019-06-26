@@ -82,6 +82,27 @@ class AccesoriosController extends Controller
             'inv' => $inv,
         ]);
     }
+    public function actionCreatec($inv, $ido, $op)
+    {
+        $model = new Accesorios();
+        $model->Precio_compra = 0 ;
+            $model->Existencia = 0 ;
+            $model->Precio_venta = 0 ;
+        if($inv == 3)
+        {
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return $this->redirect(['detallecompra/create','id'=> $ido, 'op'=>$op , 'idp' => $model->id]);
+            }   
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+            'inv' => $inv,
+            'ido' => $ido,
+            'op' => $op,
+        ]);
+    }
 
     /**
      * Updates an existing Accesorios model.

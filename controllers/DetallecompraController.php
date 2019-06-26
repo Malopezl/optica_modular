@@ -8,6 +8,14 @@ use app\models\DetallecompraSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Aro;
+use app\models\Accesorios;
+use app\models\Materiall;
+use app\models\Materiala;
+use app\models\Marca;
+use app\models\Tipo;
+use app\models\Lentesterm;
+use app\models\Lenteterm;
 
 /**
  * DetallecompraController implements the CRUD actions for Detallecompra model.
@@ -62,18 +70,67 @@ class DetallecompraController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id, $op)
+    public function actionCreate($id, $op, $idp)
     {
         $model = new Detallecompra();
         $model->Total = 0;
+        $model->Compras_id = $id;
+        $aros = [];
+        $tmp = Aro::find()->all();
+        foreach ($tmp as $aro) {
+            $material = Materiala::findOne($aro->Material_id);
+            $marca = Marca::findOne($aro->Marca_id);
+            $aros[$aro->id]="Marca: ".$marca->Nombre."; Codigo: ".$aro->Codigo."; Material: ".$material->Nombre."; Existencia: ".$aro->Existencia;
+        }
+        $acces = [];
+        $tmp1 = Accesorios::find()->all();
+        foreach ($tmp1 as $acce) {
+            $acces[$acce->id]="Nombre: ".$acce->Nombre."; Descripcion: ".$acce->Descripcion."; Existencia: ".$acce->Existencia;
+        }
+        $lentes = [];
+        $tmp2 = Lentesterm::find()->all();
+        foreach ($tmp2 as $lente) {
+            $material = Materiall::findOne($lente->Material_id); 
+            $lentes[$lente->id]="Graduacion base: ".$lente->Graduacion_base."Material: ".$material->Material;
+        }
+        $lentes1 = [];
+        $tmp3 = Lenteterm::find()->all();
+        foreach ($tmp3 as $lente1) {
+            $material1 = Materiall::findOne($lente->Material_id);
+            $tipo1 = Tipo::findOne($lente->Tipo_id);
+            $lentes1[$lente1->id]="Graduacion base: ".$lente1->Graduacion_base."; Graduacion excedente: ".$lente1->Graduacion_excedente."; Material: ".$material1->Material."; Tipo:".$tipo1->Tipo;
+        }
+        if($op == 1 && $idp != 0 )
+        {
+            $model->Lenteterm_id = $idp;
+        }
+        else if($op == 2 && $idp != 0 )
+        {
+            $model->Lentesterm_id = $idp;
+        }
+        else if($op == 3 && $idp != 0 )
+        {
+            $model->Aro_id = $idp;
+        }
+        else if($op == 4 && $idp != 0 )
+        {
+            $model->Accesorios_id = $idp;
+        }
+        else if($op == 5 && $idp != 0 )
+        {
+            $model->Mobyequipo =$idp;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['compras/creates', 'id' => $id]);
         }
-
         return $this->render('create', [
             'model' => $model,
             'id' => $id,
             'op' => $op,
+            'aros' => $aros,
+            'acces' => $acces,
+            'lentes' => $lentes,
+            'lentes1' => $lentes1,
         ]);
     }
 
