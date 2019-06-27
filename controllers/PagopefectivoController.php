@@ -8,7 +8,9 @@ use app\models\PagopefectivoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Bancos;
+use app\models\Caja;
+use app\models\Empleado;
 /**
  * PagopefectivoController implements the CRUD actions for Pagopefectivo model.
  */
@@ -62,16 +64,23 @@ class PagopefectivoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($idp)
     {
         $model = new Pagopefectivo();
-
+        $model->Proveedores_id = $idp;
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['proveedores/view', 'id' => $idp]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'idp' => $idp,
+            'emps' => $emps,
         ]);
     }
 
