@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\CajaSearch */
+/* @var $searchModel app\models\BancosnSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Cajas');
+$this->title = Yii::t('app', 'Bancosns');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="caja-index">
+<div class="bancosn-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Caja'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Bancosn'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -28,9 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'Total',
-            'Fecha',
-            'Descripcion:ntext',
+            'Nombre',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

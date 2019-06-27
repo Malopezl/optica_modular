@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-
+use kartik\select2\Select2;
 /* @var $this yii\web\View */
 /* @var $model app\models\Bancos */
 
-$this->title = Yii::t('app', 'Create Bancos');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Bancos'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Registro de Cuenta Bancaria');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Financiero'), 'url' => ['financiero/index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Cuentas'), 'url' => ['financiero/cuentas']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bancos-create">
@@ -15,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'id' => $id,
+        'nbns' => $nbns,
     ]) ?>
 
 </div>

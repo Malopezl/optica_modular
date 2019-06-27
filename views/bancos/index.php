@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Total',
             'Nombre_b',
             'Tipo_cuenta',
+            //'Bancosn_id',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
