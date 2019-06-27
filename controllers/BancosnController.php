@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Bancos;
-use app\models\BancosSearch;
+use app\models\Bancosn;
+use app\models\BancosnSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Bancosn;
+
 /**
- * BancosController implements the CRUD actions for Bancos model.
+ * BancosnController implements the CRUD actions for Bancosn model.
  */
-class BancosController extends Controller
+class BancosnController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,12 +30,12 @@ class BancosController extends Controller
     }
 
     /**
-     * Lists all Bancos models.
+     * Lists all Bancosn models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new BancosSearch();
+        $searchModel = new BancosnSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class BancosController extends Controller
     }
 
     /**
-     * Displays a single Bancos model.
+     * Displays a single Bancosn model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -58,35 +58,25 @@ class BancosController extends Controller
     }
 
     /**
-     * Creates a new Bancos model.
+     * Creates a new Bancosn model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($id)
+    public function actionCreate()
     {
-        $model = new Bancos();
-        if($id != 0)
-        {
-            $model->Bancosn_id = $id;
-        }
-        $nbns = [];
-        $tmp = Bancosn::find()->all();
-        foreach ($tmp as $nbn) {
-            $nbns[$nbn->id]="Nombre: ".$nbn->Nombre;
-        }
+        $model = new Bancosn();
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['financiero/cuentas']);
+            return $this->redirect(['bancos/create', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
-            'id' => $id,
-            'nbns' => $nbns,
         ]);
     }
 
     /**
-     * Updates an existing Bancos model.
+     * Updates an existing Bancosn model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -106,7 +96,7 @@ class BancosController extends Controller
     }
 
     /**
-     * Deletes an existing Bancos model.
+     * Deletes an existing Bancosn model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -120,15 +110,15 @@ class BancosController extends Controller
     }
 
     /**
-     * Finds the Bancos model based on its primary key value.
+     * Finds the Bancosn model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Bancos the loaded model
+     * @return Bancosn the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Bancos::findOne($id)) !== null) {
+        if (($model = Bancosn::findOne($id)) !== null) {
             return $model;
         }
 
