@@ -45,7 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //'Cv',
             //'Profesion_id',
             //'Cargo_id',
-            //'Contratacion_id',
 
             ['class' => 'yii\grid\ActionColumn',
             'template'=>'{view} {update}',

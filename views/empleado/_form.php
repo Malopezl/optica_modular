@@ -56,6 +56,12 @@ use dosamigos\datetimepicker\DateTimePicker;
         'pluginOptions'=>['allowClear=>true'],
     ]) ?>
 
+    <?= $form->field($model, 'Estado')->widget(Select2::classname(),[
+        'data' => [0 => 'Inactivo', 1 => 'Activo'],
+        'options'=>['placeholder'=>'Seleccione estado'],
+        'pluginOptions'=>['allowClear=>true'],
+    ]) ?>
+
     <?= $form->field($model, 'Sexo')->widget(Select2::classname(),[
         'data' => [0 => 'Mujer', 1 => 'Hombre'],
         'options'=>['placeholder'=>'Seleccione su sexo'],
@@ -82,15 +88,6 @@ use dosamigos\datetimepicker\DateTimePicker;
     ]) ?>
     <p>
     <?= Html::a(Yii::t('app', 'Registrar Nuevo Cargo'), ['cargo/create', 'inv'=>1], ['class' => 'btn btn-primary']) ?>
-    </p>
-
-    <?= $form->field($model, 'Contratacion_id')->widget(Select2::classname(),[
-        'data' => $conts,
-        'options'=>['placeholder'=>'Seleccione el Contrato'],
-        'pluginOptions'=>['allowClear=>true'],
-    ]) ?>
-    <p>
-    <?= Html::a(Yii::t('app', 'Registrar Nuevo Contrato'), ['contratacion/create', 'inv'=>1], ['class' => 'btn btn-primary']) ?>
     </p>
    
 
