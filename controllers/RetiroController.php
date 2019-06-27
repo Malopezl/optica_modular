@@ -8,7 +8,8 @@ use app\models\RetiroSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Bancos;
+use app\models\Empleado;
 /**
  * RetiroController implements the CRUD actions for Retiro model.
  */
@@ -65,13 +66,24 @@ class RetiroController extends Controller
     public function actionCreate()
     {
         $model = new Retiro();
-
+        $nbns = [];
+        $tmp = Bancos::find()->all();
+        foreach ($tmp as $nbn) {
+            $nbns[$nbn->id]="Numero Cuenta: ".$nbn->No_cuenta;
+        }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['financiero/cuentas']);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'nbns' => $nbns,
+            'emps' => $emps,
         ]);
     }
 

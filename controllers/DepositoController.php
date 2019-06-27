@@ -8,7 +8,8 @@ use app\models\DepositoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Empleado;
+use app\models\Bancos;
 /**
  * DepositoController implements the CRUD actions for Deposito model.
  */
@@ -65,13 +66,25 @@ class DepositoController extends Controller
     public function actionCreate()
     {
         $model = new Deposito();
-
+        $nbns = [];
+        $tmp = Bancos::find()->all();
+        foreach ($tmp as $nbn) {
+            $nbns[$nbn->id]="Numero Cuenta: ".$nbn->No_cuenta;
+        }
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['financiero/cuentas']);
         }
 
         return $this->render('create', [
             'model' => $model,
+
+            'nbns' => $nbns,
+            'emps' => $emps,
         ]);
     }
 
@@ -85,13 +98,15 @@ class DepositoController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'nbns' => $nbns,
+            'emps' => $emps,
         ]);
     }
 
