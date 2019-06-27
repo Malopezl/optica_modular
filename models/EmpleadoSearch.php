@@ -17,7 +17,7 @@ class EmpleadoSearch extends Empleado
     public function rules()
     {
         return [
-            [['id', 'Edad', 'Estado_civil', 'Profesion_id', 'Cargo_id', 'Contratacion_id'], 'integer'],
+            [['id', 'Edad', 'Estado_civil','Estado', 'Sexo','Profesion_id', 'Cargo_id'], 'integer'],
             [['Nombre', 'Nit', 'Telefono', 'Telefono2', 'Correo_Electronico', 'Correo_electronico2', 'Direccion', 'Fecha_Nacimiento', 'No_licencia', 'Cv'], 'safe'],
         ];
     }
@@ -64,7 +64,6 @@ class EmpleadoSearch extends Empleado
             'Estado_civil' => $this->Estado_civil,
             'Profesion_id' => $this->Profesion_id,
             'Cargo_id' => $this->Cargo_id,
-            'Contratacion_id' => $this->Contratacion_id,
         ]);
 
         $query->andFilterWhere(['like', 'Nombre', $this->Nombre])
@@ -75,7 +74,8 @@ class EmpleadoSearch extends Empleado
             ->andFilterWhere(['like', 'Correo_electronico2', $this->Correo_electronico2])
             ->andFilterWhere(['like', 'Direccion', $this->Direccion])
             ->andFilterWhere(['like', 'No_licencia', $this->No_licencia])
-            ->andFilterWhere(['like', 'Cv', $this->Cv]);
+            ->andFilterWhere(['like', 'Cv', $this->Cv])
+            ->andFilterWhere(['like', 'Estado', $this->Estado]);
 
         return $dataProvider;
     }

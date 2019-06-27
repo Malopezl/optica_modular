@@ -20,15 +20,14 @@ use Yii;
  * @property string $Fecha_Nacimiento
  * @property int $Edad
  * @property int $Estado_civil
+ * @property int $Estado
  * @property int $Sexo
  * @property string $No_licencia
  * @property string $Cv
  * @property int $Profesion_id
  * @property int $Cargo_id
- * @property int $Contratacion_id
  *
  * @property Cargo $cargo
- * @property Contratacion $contratacion
  * @property Profesion $profesion
  * @property Entradasalida[] $entradasalidas
  */
@@ -50,17 +49,16 @@ class Empleado extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Fecha_Nacimiento', 'Nombre', 'Nit', 'Telefono', 'Correo_Electronico','Estado_civil','Sexo','file'], 'required'],
-            [['Edad', 'Estado_civil','Sexo', 'Profesion_id', 'Cargo_id', 'Contratacion_id'], 'integer'],
+            [['Fecha_Nacimiento', 'Nombre', 'Nit', 'Telefono', 'Correo_Electronico','Estado_civil','Sexo','file', 'Estado'], 'required'],
+            [['Edad', 'Estado_civil','Estado','Sexo', 'Profesion_id', 'Cargo_id'], 'integer'],
             [['Cv'], 'string', 'max' => 100],
-            [['Profesion_id', 'Cargo_id', 'Contratacion_id'], 'required'],
+            [['Profesion_id', 'Cargo_id'], 'required'],
             [['Nombre', 'Correo_Electronico', 'Correo_electronico2', 'Direccion'], 'string', 'max' => 100],
             [['Nit'], 'string', 'max' => 60],
             [['Telefono', 'Telefono2'], 'string', 'max' => 75],
             [['No_licencia'], 'string', 'max' => 45],
             [['file'], 'file', 'extensions'=>'pdf'],
             [['Cargo_id'], 'exist', 'skipOnError' => true, 'targetClass' => Cargo::className(), 'targetAttribute' => ['Cargo_id' => 'id']],
-            [['Contratacion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Contratacion::className(), 'targetAttribute' => ['Contratacion_id' => 'id']],
             [['Profesion_id'], 'exist', 'skipOnError' => true, 'targetClass' => Profesion::className(), 'targetAttribute' => ['Profesion_id' => 'id']],
         ];
     }
@@ -82,12 +80,12 @@ class Empleado extends \yii\db\ActiveRecord
             'Fecha_Nacimiento' => 'Fecha Nacimiento',
             'Edad' => 'Edad',
             'Estado_civil' => 'Estado Civil',
+            'Estado'=> 'Estado',
             'Sexo' => 'Sexo',
             'No_licencia' => 'No. Licencia',
             'Cv' => 'Curriculum',
             'Profesion_id' => 'Profesion',
             'Cargo_id' => 'Cargo',
-            'Contratacion_id' => 'Contratacion ',
             'file'=>'Seleccionar Curriculum',
 
 
@@ -105,11 +103,6 @@ class Empleado extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getContratacion()
-    {
-        return $this->hasOne(Contratacion::className(), ['id' => 'Contratacion_id']);
-    }
-
     /**
      * @return \yii\db\ActiveQuery
      */
