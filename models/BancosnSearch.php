@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Caja;
+use app\models\Bancosn;
 
 /**
- * CajaSearch represents the model behind the search form of `app\models\Caja`.
+ * BancosnSearch represents the model behind the search form of `app\models\Bancosn`.
  */
-class CajaSearch extends Caja
+class BancosnSearch extends Bancosn
 {
     /**
      * {@inheritdoc}
@@ -18,8 +18,7 @@ class CajaSearch extends Caja
     {
         return [
             [['id'], 'integer'],
-            [['Total'], 'number'],
-            [['Fecha', 'Descripcion'], 'safe'],
+            [['Nombre'], 'safe'],
         ];
     }
 
@@ -41,7 +40,7 @@ class CajaSearch extends Caja
      */
     public function search($params)
     {
-        $query = Caja::find();
+        $query = Bancosn::find();
 
         // add conditions that should always apply here
 
@@ -60,11 +59,9 @@ class CajaSearch extends Caja
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'Total' => $this->Total,
-            'Fecha' => $this->Fecha,
         ]);
 
-        $query->andFilterWhere(['like', 'Descripcion', $this->Descripcion]);
+        $query->andFilterWhere(['like', 'Nombre', $this->Nombre]);
 
         return $dataProvider;
     }

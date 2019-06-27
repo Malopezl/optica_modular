@@ -9,10 +9,12 @@ use Yii;
  *
  * @property int $id
  * @property string $No_cuenta
- * @property string $Total
+ * @property double $Total
  * @property string $Nombre_b
  * @property string $Tipo_cuenta
+ * @property int $Bancosn_id
  *
+ * @property Bancosn $bancosn
  * @property Deposito[] $depositos
  * @property Pagopbanco[] $pagopbancos
  * @property Retiro[] $retiros
@@ -33,8 +35,11 @@ class Bancos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['No_cuenta', 'Total'], 'string', 'max' => 45],
+            [['Total'], 'number'],
+            [['Bancosn_id'], 'integer'],
+            [['No_cuenta'], 'string', 'max' => 45],
             [['Nombre_b', 'Tipo_cuenta'], 'string', 'max' => 100],
+            [['Bancosn_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bancosn::className(), 'targetAttribute' => ['Bancosn_id' => 'id']],
         ];
     }
 
@@ -49,7 +54,16 @@ class Bancos extends \yii\db\ActiveRecord
             'Total' => 'Total',
             'Nombre_b' => 'Nombre B',
             'Tipo_cuenta' => 'Tipo Cuenta',
+            'Bancosn_id' => 'Bancosn ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBancosn()
+    {
+        return $this->hasOne(Bancosn::className(), ['id' => 'Bancosn_id']);
     }
 
     /**

@@ -17,8 +17,9 @@ class BancosSearch extends Bancos
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['No_cuenta', 'Total', 'Nombre_b', 'Tipo_cuenta'], 'safe'],
+            [['id', 'Bancosn_id'], 'integer'],
+            [['No_cuenta', 'Nombre_b', 'Tipo_cuenta'], 'safe'],
+            [['Total'], 'number'],
         ];
     }
 
@@ -59,10 +60,11 @@ class BancosSearch extends Bancos
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'Total' => $this->Total,
+            'Bancosn_id' => $this->Bancosn_id,
         ]);
 
         $query->andFilterWhere(['like', 'No_cuenta', $this->No_cuenta])
-            ->andFilterWhere(['like', 'Total', $this->Total])
             ->andFilterWhere(['like', 'Nombre_b', $this->Nombre_b])
             ->andFilterWhere(['like', 'Tipo_cuenta', $this->Tipo_cuenta]);
 

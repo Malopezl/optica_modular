@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property double $Total
  * @property string $Fecha
+ * @property string $Descripcion
  *
  * @property Pagopefectivo[] $pagopefectivos
  */
@@ -31,6 +32,7 @@ class Caja extends \yii\db\ActiveRecord
         return [
             [['Total'], 'number'],
             [['Fecha'], 'safe'],
+            [['Descripcion'], 'string'],
         ];
     }
 
@@ -43,6 +45,7 @@ class Caja extends \yii\db\ActiveRecord
             'id' => 'ID',
             'Total' => 'Total',
             'Fecha' => 'Fecha',
+            'Descripcion' => 'Descripcion',
         ];
     }
 
