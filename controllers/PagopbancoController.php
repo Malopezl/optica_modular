@@ -8,7 +8,8 @@ use app\models\PagopbancoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use app\models\Bancos;
+use app\models\Empleado;
 /**
  * PagopbancoController implements the CRUD actions for Pagopbanco model.
  */
@@ -62,16 +63,29 @@ class PagopbancoController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($idp)
     {
         $model = new Pagopbanco();
-
+        $model->Proveedores_id = $idp;
+        $emps = [];
+        $tmp1 = Empleado::find()->all();
+        foreach ($tmp1 as $emp) {
+            $emps[$emp->id]="Nombre: ".$emp->Nombre;
+        }
+        $bans = [];
+        $tmp = Bancos::find()->all();
+        foreach ($tmp as $ban) {
+            $bans[$ban->id]="Nombre: ".$ban->Nombre." ; No. de Cuenta: ".$ban->No_cuenta;
+        }
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'idp' => $idp,
+            'emps' => $emps,
+            'bans' => $bans,
         ]);
     }
 
