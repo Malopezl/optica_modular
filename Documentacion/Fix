@@ -1,0 +1,17 @@
+1. error models\Mobyequipo::Exostencia ✔️
+2. arreglo visual - mercaderia/Registro de Ingreso espacio en la descripcion de lente semiterminado ✔️
+3. duda - en mobiliario y equipo, solo la fecha es un campo obligatorio? ✔️
+4. arreglar - trigger de depreciaciones
+5. arreglar - views/mobyequipo/view.php titulo borrar una o y cambiar moviliario por mobiliario ✔️
+6. error - registrar salida en mercaderia/lentesemiterminado regresa a mobiliario y equipo
+7. error - trigger ganancia
+8. error - mercaderias permite salidas sin ingreso
+9. arreglo - sin campos obligatorios en ventas/cotizacion
+10. arreglo - subir campo de fecha en ventas/cotizacion
+11. arreglo - sin campos obligatorios en ventas/cotizaciones/cotizacion/agregar productos
+12. arreglo - sin campos obligatorios en ventas/nueva venta
+13. arreglo - sin campos obligatorios en ventas/nueva venta/registrar cliente
+14. error - al agregar lente izquierdo y derecho, y aro
+15. error - no finaliza venta
+16. error - al iniciar una venta sin terminarla y dirigirse a inicio la venta aparece como registrada.
+
