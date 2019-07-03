@@ -59,7 +59,7 @@ use dosamigos\datetimepicker\DateTimePicker;
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Registrar'), ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('app', 'Regresar'), ['proveedores/view','id'=> $idp], ['class' => 'btn btn-danger']) ?>
+        <?= Html::a(Yii::t('app', 'Regresar'), ['venta/index'], ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
