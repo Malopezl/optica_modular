@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="encargado_cotizacion" pageWidth="575" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="536e8020-5f48-4906-9742-512fdf75a611">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Optica"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="idempleado" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Optica.Empleado WHERE  Empleado.id =  $P{idempleado} ]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Nit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Nit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Telefono" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Telefono"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Telefono2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Telefono2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Correo_Electronico" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Correo_Electronico"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Correo_electronico2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Correo_electronico2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Direccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Direccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Fecha_Nacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha_Nacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Edad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Edad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Estado_civil" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="Estado_civil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Sexo" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="Sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="No_licencia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="No_licencia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Cv" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cv"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Profesion_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Profesion_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Cargo_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Cargo_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<field name="Contratacion_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Contratacion_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Empleado"/>
+	</field>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="130" y="20" width="410" height="20" uuid="ebed32ea-8770-4e62-87d7-1851e8357a17"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="20" width="100" height="20" uuid="74a63530-943e-41aa-ba16-ddb476223d69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="0" width="120" height="20" uuid="88c04063-34bc-497a-87a5-cf63450a508a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Encargado:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

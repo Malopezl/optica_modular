@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Cotizacion" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dd42ba9b-5457-49ef-a5aa-87647a0590ee">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Optica"/>
+	<parameter name="idcot" class="java.lang.String" nestedType="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Optica.Cotizacion WHERE  $P{idcot} = Cotizacion.id]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Encargado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Encargado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="Fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Detalles" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Detalles"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Nodocumento" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Nodocumento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<field name="Empleado_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Empleado_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Cotizacion"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="570" height="83" uuid="60a4dc79-9cf9-4daa-be09-53672aaf7254"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="21" y="21" width="214" height="30" uuid="c7a8e427-45d5-454e-9d80-c14feaf718e8">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="25"/>
+					</textElement>
+					<text><![CDATA[OPTICA DIAZ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="61" y="51" width="132" height="20" uuid="21294b9d-842d-446d-b0a2-7465e2152a4b"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Cotizacion]]></text>
+				</staticText>
+				<line>
+					<reportElement x="280" y="0" width="1" height="82" uuid="d9f1777f-98da-4101-afac-e7c101be763c"/>
+				</line>
+				<staticText>
+					<reportElement x="295" y="1" width="266" height="20" uuid="90b2d622-d47d-4fbb-b540-5b2b89bb6397"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Dashed"/>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[NUMERO DE DOCUMENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="295" y="42" width="266" height="18" uuid="51c55d6a-7a92-4650-b82c-0ed1476ecc03"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[FECHA:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="282" y="61" width="280" height="20" uuid="30976161-43c3-4d3d-a797-eea15590a6a6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="282" y="22" width="280" height="20" uuid="413d8a5a-4859-4431-9938-102acf9b439d"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom"/>
+					<textFieldExpression><![CDATA[$F{Nodocumento}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="0" y="83" width="570" height="30" uuid="ff3286b8-f017-422e-a417-33fd056b3719"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport>
+					<reportElement x="1" y="1" width="539" height="29" uuid="ab144f0a-e032-4869-a70f-a7c3affa2628"/>
+					<subreportParameter name="idempleado">
+						<subreportParameterExpression><![CDATA[$F{Empleado_id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["encargado_cotizacion"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</title>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="570" height="20" uuid="85554cf6-8c9a-44ae-82a7-cd3dd419b4cc"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport>
+					<reportElement x="1" y="1" width="569" height="19" uuid="49f5ff41-4e8b-4b74-a945-1b15655a35b5"/>
+					<subreportParameter name="idcot">
+						<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["detallecotizacion"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+		<band height="40">
+			<frame>
+				<reportElement x="0" y="0" width="570" height="40" uuid="d18d7480-caa9-4c0f-8a1f-2a4317773745"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField>
+					<reportElement x="182" y="11" width="309" height="19" uuid="2c17fa2a-3295-4a96-b579-acb8fc45e7cb"/>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="110" y="11" width="72" height="19" uuid="ce2b859c-7b68-4c3a-8d30-6b9a99c8f0a6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="570" height="54" uuid="50f51b46-9b79-4c56-b00c-dfe34e31e781"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField>
+					<reportElement x="80" y="0" width="400" height="40" uuid="498f354a-2acd-4eac-b4e5-ef40b346984b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{Detalles}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="80" y="39" width="200" height="15" uuid="fe691751-5c07-424a-b89f-b2ec9334e052"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement x="280" y="39" width="199" height="15" uuid="a029601f-242b-455d-a1fc-daf54eae39f0"/>
+					<textElement textAlignment="Left"/>
+					<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
