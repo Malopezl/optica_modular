@@ -10,3 +10,61 @@ sudo composer require jaspersoft/rest-client v2.0.0
 sudo composer require kartik-v/yii2-widget-select2 "dev-master"
 
 sudo composer require 2amigos/yii2-date-time-picker-widget:~1.0
+
+
+Autostart
+---- scrypt ----
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: jasperserver
+# Required-Start:
+# Required-Stop:
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start JasperServer at boot time
+# Description: Enable service provided by JasperServer.
+### END INIT INFO
+
+# CHANGE: change line below to point to your jasperserver installation path
+JASPER_HOME="/home/marcos/jasperreports-server-cp-6.1.0/"
+
+# CHANGE: change line below to specify the user that jasperserver will run under
+JASPER_USER=marcos
+
+
+case "$1" in 
+  start) 
+    if [ -f $JASPER_HOME/ctlscript.sh ]; then 
+      echo "Starting JasperServer" 
+      su $JASPER_USER -c "$JASPER_HOME/ctlscript.sh start" 
+    fi 
+    ;; 
+  stop) 
+    if [ -f $JASPER_HOME/ctlscript.sh ]; then 
+      echo "Stopping JasperServer" 
+      su $JASPER_USER -c "$JASPER_HOME/ctlscript.sh stop" 
+    fi 
+    ;; 
+  restart) 
+    if [ -f $JASPER_HOME/ctlscript.sh ]; then 
+      echo "Restarting JasperServer" 
+      su $JASPER_USER -c "$JASPER_HOME/ctlscript.sh restart" 
+    fi 
+    ;; 
+  status) 
+    if [ -f $JASPER_HOME/ctlscript.sh ]; then 
+      su $JASPER_USER -c "$JASPER_HOME/ctlscript.sh status" 
+    fi 
+    ;; 
+  *) 
+    echo $"Usage: $0 {start|stop|restart|status}" 
+    exit 1 
+    ;; 
+esac
+
+:
+---- fin scrypt ----
+
+sudo chmod +x /etc/init.d/jasperserver
+
+sudo update-rc.d jasperserver defaults
