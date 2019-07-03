@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Venta */
 
@@ -30,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     -->
      <?= Html::a(Yii::t('app', 'Regresar'), ['index'], ['class' => 'btn btn-danger']) ?>
+     <button class="btn btn-default _normal">Imprimir Reporte</button>
     </p>
 
     <?= DetailView::widget([
@@ -141,3 +143,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php Pjax::end(); ?>
 
 </div>
+<?php 
+        $this->registerJs(
+                '$(\'._normal\').on(\'click\', function(event){
+                            window.open("'.Url::toRoute(['venta/reporte','id'=>$model->id]).'","_blank");                    
+                                });'
+            );
+    ?>

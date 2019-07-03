@@ -2,6 +2,8 @@
 use yii\widgets\Pjax;
 use yii\helpers\Html;
 use yii\grid\GridView;
+
+use yii\helpers\Url;
 $this->title = Yii::t('app', 'Mercaderias');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Inventario'), 'url' => ['inventario/index']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -15,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a(Yii::t('app', 'Ingreso'), ['entrada/createinlst', 'id'=>0], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Salida'), ['salida/createinlst'], ['class' => 'btn btn-primary']) ?>
+        <button class="btn btn-default _normal">Imprimir Reporte</button>
      </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -206,5 +209,11 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
-
+ <?php 
+        $this->registerJs(
+                '$(\'._normal\').on(\'click\', function(event){
+                            window.open("'.Url::toRoute(['inventario/reporte']).'","_blank");                    
+                                });'
+            );
+    ?>
 

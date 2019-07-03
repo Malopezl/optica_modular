@@ -35,7 +35,8 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+    
+/*      echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
            // ['label' => 'Home', 'url' => ['/site/index']],
@@ -45,7 +46,8 @@ AppAsset::register($this);
               ['label' => 'Ventas', 'url' => ['/cventas/index']],
               ['label' => 'Recursos Humanos', 'url' => ['/rhumanos/index']],
               ['label' => 'Financiero', 'url' => ['/financiero/index']],
-/*           Yii::$app->user->isGuest ? (
+
+         Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
@@ -56,9 +58,35 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )*/
+            )
         ],
-    ]);
+    ]);*/
+    if (Yii::$app->user->isGuest) {
+    
+    $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+} else {
+    $menuItems[] = ['label' => 'Registro', 'url' => ['/site/signup']];
+    $menuItems = [
+                ['label' => 'Inventario', 'url' => ['/inventario/index']],
+              ['label' => 'Ventas', 'url' => ['/cventas/index']],
+              ['label' => 'Recursos Humanos', 'url' => ['/rhumanos/index']],
+              ['label' => 'Financiero', 'url' => ['/financiero/index']],
+
+    ];
+    $menuItems[] = '<li>'
+        . Html::beginForm(['/site/logout'], 'post')
+        . Html::submitButton(
+            'Logout (' . Yii::$app->user->identity->username . ')',
+            ['class' => 'btn btn-link logout']
+        )
+        . Html::endForm()
+        . '</li>';
+}
+ 
+echo Nav::widget([
+    'options' => ['class' => 'navbar-nav navbar-right'],
+    'items' => $menuItems,
+]);
     NavBar::end();
     ?>
 
