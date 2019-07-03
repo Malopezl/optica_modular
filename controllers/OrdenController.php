@@ -39,6 +39,9 @@ class OrdenController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new OrdenSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -56,6 +59,9 @@ class OrdenController extends Controller
      */
     public function actionView($id, $inv, $idi)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'inv' => $inv,
@@ -70,6 +76,9 @@ class OrdenController extends Controller
      */
     public function actionCreate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Orden();
         $model->Venta_id=$id;
         $model->Finalizada= 0;
@@ -87,6 +96,9 @@ class OrdenController extends Controller
     }
     public function actionCreates($id, $reid, $liid, $ldid, $arid, $ido)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $model1 = null;
         $model2 = null;
@@ -162,6 +174,9 @@ class OrdenController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

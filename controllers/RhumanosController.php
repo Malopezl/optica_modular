@@ -2,39 +2,47 @@
 
 namespace app\controllers;
 use Yii;
+use app\models\CargoSearch;
+use app\models\ProfesionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\models\Bancos;
-use app\models\BancosSearch;
-use app\models\Caja;
-use app\models\CajaSearch;
 
-class FinancieroController extends \yii\web\Controller
+class RhumanosController extends \yii\web\Controller
 {
     public function actionIndex()
     {
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        return $this->render('index');
+        else
+        {
+            return $this->render('index');
+        }
+        
     }
-    public function actionCuentas()
+
+     public function actionDetalles()
     {
         if (Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-    	$searchModel = new BancosSearch();
+        else
+        {
+             $searchModel = new CargoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $searchModel1 = new CajaSearch();
+        $searchModel1 = new ProfesionSearch();
         $dataProvider1 = $searchModel1->search(Yii::$app->request->queryParams);
-        return $this->render('cuentas',[
+     
+        return $this->render('detalles',[
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'searchModel1' => $searchModel1,
             'dataProvider1' => $dataProvider1,
+            
         ]);
-
+        }
+       
     }
 
 }

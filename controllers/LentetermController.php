@@ -37,6 +37,9 @@ class LentetermController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new LentetermSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -54,6 +57,9 @@ class LentetermController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $model1 = Materiall::findOne($model->Material_id);
         $model2 = Tipo::findOne($model->Tipo_id);
@@ -72,7 +78,9 @@ class LentetermController extends Controller
      */
     public function actionCreate($inv)
     {
-
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Lenteterm();
         $model->Precio_compra = 0;
         $model->Existencia = 0;
@@ -103,7 +111,9 @@ class LentetermController extends Controller
     }
     public function actionCreatec($inv, $ido, $op)
     {
-
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Lenteterm();
         $model->Precio_compra = 0;
         $model->Existencia = 0;
@@ -145,6 +155,9 @@ class LentetermController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $mats = [];
         $tmp = Materiall::find()->all();

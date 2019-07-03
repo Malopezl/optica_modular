@@ -36,6 +36,9 @@ class RetiroController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new RetiroSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -53,6 +56,9 @@ class RetiroController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -65,6 +71,9 @@ class RetiroController extends Controller
      */
     public function actionCreate()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Retiro();
         $nbns = [];
         $tmp = Bancos::find()->all();
@@ -96,6 +105,9 @@ class RetiroController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

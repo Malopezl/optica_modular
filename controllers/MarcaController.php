@@ -35,6 +35,9 @@ class MarcaController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new MarcaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +55,9 @@ class MarcaController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'inv' => $inv,
@@ -65,6 +71,9 @@ class MarcaController extends Controller
      */
     public function actionCreate($inv, $invo, $op, $ido)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Marca();
 
         if($invo == 1)
@@ -107,6 +116,9 @@ class MarcaController extends Controller
      */
     public function actionUpdate($id, $inv, $invo)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -8,7 +8,6 @@ use app\models\MaterialaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * MaterialaController implements the CRUD actions for Materiala model.
  */
@@ -35,6 +34,9 @@ class MaterialaController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new MaterialaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +54,9 @@ class MaterialaController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'inv' => $inv,
@@ -65,6 +70,9 @@ class MaterialaController extends Controller
      */
     public function actionCreate($inv, $invo, $op, $ido)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Materiala();
         if($invo == 1)
         {
@@ -106,6 +114,9 @@ class MaterialaController extends Controller
      */
     public function actionUpdate($id, $inv, $invo)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
