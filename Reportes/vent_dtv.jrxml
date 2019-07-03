@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vent_dtv" pageWidth="575" pageHeight="792" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2da26b78-e8b4-4d44-aca7-f0c8768c272b">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Optica"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="idventa" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Optica.Detalleventa WHERE Detalleventa.Venta_id =  $P{idventa}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Cantidad" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Venta_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Venta_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Accesorios_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Accesorios_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Aro_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Aro_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Descuento" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Descuento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detalleventa"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="142" y="0" width="250" height="20" uuid="c75bdb45-6e26-44cd-9e85-35d3fd83dd87"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalles de la Venta]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="4" splitType="Stretch">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="261" height="3" uuid="9dcfa965-ce67-4fc6-bd09-d28387f46662"/>
+				<subreportParameter name="idaro">
+					<subreportParameterExpression><![CDATA[$F{Aro_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detventaaro"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="3">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="380" height="2" uuid="a4368a7b-a31b-4e03-8d4d-5297d5a35d3b"/>
+				<subreportParameter name="idaccesorio">
+					<subreportParameterExpression><![CDATA[$F{Accesorios_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detventaacc"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

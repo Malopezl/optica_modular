@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="detallecotizacion" pageWidth="570" pageHeight="792" columnWidth="530" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ad1231c-30e6-44f9-ba48-d21fed935c44">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Optica"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="idcot" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Optica.Detallecotizacion WHERE Detallecotizacion.Cotizacion_id = $P{idcot}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Cotizacion_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Cotizacion_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Aro_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Aro_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Accesorios_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Accesorios_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Lentesterm_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Lentesterm_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Lenteterm_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Lenteterm_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Cantidad" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<field name="Descuento" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="Descuento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Detallecotizacion"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="201" height="31" uuid="42e7227e-b3f9-45bf-a7b9-80d053649252"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Detalle Cotizacion]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="9" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="530" height="4" uuid="303e560d-ab63-4239-b67c-1d37add72343"/>
+				<subreportParameter name="idaro">
+					<subreportParameterExpression><![CDATA[$F{Aro_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detcot_aro"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="4">
+			<subreport>
+				<reportElement x="0" y="0" width="530" height="4" uuid="e7af827f-f30b-414b-8cec-01e3a690e39b"/>
+				<subreportParameter name="idlentet">
+					<subreportParameterExpression><![CDATA[$F{Lenteterm_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detcot_ltt"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="4">
+			<subreport>
+				<reportElement x="0" y="0" width="251" height="4" uuid="a821baab-e6f8-4bba-a751-a4a4ed575b33"/>
+				<subreportParameter name="idlentesterm">
+					<subreportParameterExpression><![CDATA[$F{Lentesterm_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detcot_ltst"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="5">
+			<subreport>
+				<reportElement x="0" y="0" width="201" height="4" uuid="e76ce75f-8baf-4ded-b807-191d7eca479b"/>
+				<subreportParameter name="idaccesorio">
+					<subreportParameterExpression><![CDATA[$F{Accesorios_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["detcot_acc"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="41">
+			<textField>
+				<reportElement x="30" y="16" width="120" height="24" uuid="7e11cde0-d597-4f9c-b3df-2e86b2fbe7cf"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="30" y="0" width="120" height="16" uuid="e212dc18-604c-42a5-a584-add6e5db5d47"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="16" width="130" height="24" uuid="dc06c79b-035b-40ef-aa6d-381c132a05f1"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Descuento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="150" y="0" width="130" height="16" uuid="15b3df3f-8a14-4763-ad5e-d2375ce998c0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="16" width="210" height="24" uuid="7c28adf4-3fb8-43fe-bfd1-a677d426063e"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="0" width="210" height="16" uuid="3ef68794-48f8-4e9a-9397-dd50b9d7a52e"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

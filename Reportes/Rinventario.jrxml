@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Rinventario" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ff8194b7-82a4-4153-9af2-9a2e0c3b1b25">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Optica"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM Optica.Empleado]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="281" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="570" height="83" uuid="56d56bc1-34b8-46e8-8125-22bee89dbff8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="21" y="21" width="214" height="30" uuid="52e3d5de-cbde-46d9-9299-98fbeeb5f5b7">
+						<property name="com.jaspersoft.studio.unit.width" value="px"/>
+						<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					</reportElement>
+					<textElement textAlignment="Center">
+						<font size="25"/>
+					</textElement>
+					<text><![CDATA[OPTICA DIAZ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="61" y="51" width="132" height="20" uuid="0ba3b76a-f354-4e03-9b74-f90c8d1413bd"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Reporte Inventario]]></text>
+				</staticText>
+				<line>
+					<reportElement x="280" y="0" width="1" height="82" uuid="8be3296a-9519-4a45-bea7-570121b5ceb2"/>
+				</line>
+				<staticText>
+					<reportElement x="291" y="4" width="266" height="18" uuid="ee97cda0-2a94-44fc-8f46-90d2cb10e7b2"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[FECHA:]]></text>
+				</staticText>
+				<textField pattern="MMMMM dd, yyyy">
+					<reportElement x="291" y="23" width="266" height="21" uuid="9465be4f-873f-4b7c-a06d-efc42872e9c0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="291" y="44" width="266" height="16" uuid="6b27fbce-fadb-462b-a00f-2bee515172c3"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement verticalAlignment="Bottom">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Hora:]]></text>
+				</staticText>
+				<textField pattern="HH:mm">
+					<reportElement x="291" y="59" width="266" height="21" uuid="b051ce31-7f6d-4fc7-883e-f159cf4a1dd2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="131" width="570" height="50" uuid="84ae2739-10eb-41ad-a5ba-550939f26f98"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport>
+					<reportElement positionType="Float" x="1" y="1" width="569" height="29" uuid="d9d82c22-a28b-49f2-903f-8ed12352ed28"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["rilttm"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="83" width="570" height="48" uuid="67ffdbae-40d7-46c0-9208-1adc7101fdf0"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport overflowType="Stretch">
+					<reportElement positionType="Float" x="0" y="1" width="569" height="29" uuid="46071347-c54c-4aa6-815e-d32b47e01441"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["riaros"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="230" width="570" height="50" uuid="3e351fc8-fb39-47d9-a40c-3e9225093894"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport>
+					<reportElement positionType="Float" x="1" y="1" width="171" height="30" uuid="ae2d9a1a-0d89-400e-a33e-63d58a655393"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["riacc"]]></subreportExpression>
+				</subreport>
+			</frame>
+			<frame>
+				<reportElement positionType="Float" x="0" y="181" width="570" height="49" uuid="6c6ae7ac-e3d4-4493-a197-392fb3f16ef5"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<subreport>
+					<reportElement positionType="Float" x="1" y="1" width="171" height="31" uuid="61a2beac-5609-4a60-b950-ef8e02bc8915"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["riltstm"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</title>
+</jasperReport>
