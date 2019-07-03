@@ -1,0 +1,12 @@
+Migration
+
+sudo php yii migrate/create create_user_table
+sudo php yii migrate
+
+Composer
+
+sudo composer require jaspersoft/rest-client v2.0.0
+
+sudo composer require kartik-v/yii2-widget-select2 "dev-master"
+
+sudo composer require 2amigos/yii2-date-time-picker-widget:~1.0
