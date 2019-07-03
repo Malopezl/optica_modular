@@ -46,6 +46,9 @@ class SalidaController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new SalidaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -63,6 +66,9 @@ class SalidaController extends Controller
      */
       public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
        $model11 = null;
         $model12 = null;
         $model21 = null;
@@ -117,6 +123,9 @@ class SalidaController extends Controller
      */
     public function actionCreate()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Salida();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -129,6 +138,9 @@ class SalidaController extends Controller
     }
      public function actionCreateinlst()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Salida();
         $lentes = [];
         $tmp = Lentesterm::find()->all();
@@ -153,6 +165,9 @@ class SalidaController extends Controller
     }
      public function actionCreateinlt()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Salida();
         $lentes = [];
         $tmp = Lenteterm::find()->all();
@@ -178,6 +193,9 @@ class SalidaController extends Controller
     }
      public function actionCreateinar()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Salida();
         $aros = [];
         $tmp = Aro::find()->all();
@@ -203,6 +221,9 @@ class SalidaController extends Controller
     }
      public function actionCreateinacc()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Salida();
         $acces = [];
         $tmp = Accesorios::find()->all();
@@ -236,6 +257,9 @@ class SalidaController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -42,6 +42,9 @@ class DetallecotizacionController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new DetallecotizacionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -59,6 +62,9 @@ class DetallecotizacionController extends Controller
      */
     public function actionView($id, $inv, $idi)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'id' => $id,
@@ -74,6 +80,9 @@ class DetallecotizacionController extends Controller
      */
     public function actionCreate($id, $op)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Detallecotizacion();
         $model->Cotizacion_id = $id;
         $model->Total = 0;
@@ -127,6 +136,9 @@ class DetallecotizacionController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

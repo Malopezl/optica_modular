@@ -37,6 +37,9 @@ class AroController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new AroSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -54,6 +57,9 @@ class AroController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $model1 = Materiala::findOne($model->Material_id);
         $model2 = Marca::findOne($model->Marca_id);
@@ -72,6 +78,9 @@ class AroController extends Controller
      */
     public function actionCreate($inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Aro();
         $model->Precio_compra = 0 ;
         $model->Existencia = 0 ;
@@ -103,6 +112,9 @@ class AroController extends Controller
     }
     public function actionCreatec($inv, $ido, $op)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Aro();
         $model->Precio_compra = 0 ;
         $model->Existencia = 0 ;
@@ -144,6 +156,9 @@ class AroController extends Controller
      */
     public function actionUpdate($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $mats = [];
         $tmp = Materiala::find()->all();

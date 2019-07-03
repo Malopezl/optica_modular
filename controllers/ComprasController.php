@@ -38,6 +38,9 @@ class ComprasController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        } 
         $searchModel = new ComprasSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -55,6 +58,9 @@ class ComprasController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -67,6 +73,9 @@ class ComprasController extends Controller
      */
     public function actionCreate($idp)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Compras();
         $model->Total = 0 ;
         $model->Contado = 0 ;
@@ -98,7 +107,9 @@ class ComprasController extends Controller
     }
     public function actionCreates($id)
     {
-
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $model->Total =1;
         $searchModel = new DetallecompraSearch();
@@ -114,6 +125,9 @@ class ComprasController extends Controller
     }
     public function actionCreatef($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
          $provs = [];
         $tmp = Proveedores::find()->all();
@@ -144,6 +158,9 @@ class ComprasController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

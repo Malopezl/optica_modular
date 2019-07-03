@@ -41,6 +41,9 @@ class DetalleventaController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new DetalleventaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -59,6 +62,9 @@ class DetalleventaController extends Controller
      */
     public function actionView($id, $inv, $idi)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'inv' => $inv,
@@ -74,6 +80,9 @@ class DetalleventaController extends Controller
      */
     public function actionCreate($op, $id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Detalleventa();
         $model->Venta_id = $id;
         $model->Descuento = 0;
@@ -111,6 +120,9 @@ class DetalleventaController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -131,6 +143,7 @@ class DetalleventaController extends Controller
      */
     public function actionDelete($id)
     {
+        
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

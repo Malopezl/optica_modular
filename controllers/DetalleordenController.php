@@ -41,6 +41,9 @@ class DetalleordenController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new DetalleordenSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -58,6 +61,9 @@ class DetalleordenController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -70,10 +76,13 @@ class DetalleordenController extends Controller
      */
     public function actionCreate($id, $reid, $liid, $ldid, $arid, $ido, $op)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Detalleorden();
         $model->Total= 0;
         $model->Descuento = 0;
-       $lentes = [];
+        $lentes = [];
         $tmp = Lentesterm::find()->all();
         foreach ($tmp as $lente) {
             $material = Materiall::findOne($lente->Material_id); 
@@ -138,6 +147,9 @@ class DetalleordenController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

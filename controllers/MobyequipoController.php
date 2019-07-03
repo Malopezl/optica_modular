@@ -35,6 +35,9 @@ class MobyequipoController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new MobyequipoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +55,9 @@ class MobyequipoController extends Controller
      */
     public function actionView($id, $inv)
     {   
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $model1 = Depreciacion::findOne($model->Depreciacion_id);
         return $this->render('view', [
@@ -68,6 +74,9 @@ class MobyequipoController extends Controller
      */
     public function actionCreate($inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Mobyequipo();
         $model->Precio_venta = 0;
         $model->Existencia = 0;
@@ -101,6 +110,9 @@ class MobyequipoController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

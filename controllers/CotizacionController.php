@@ -12,6 +12,7 @@ use app\models\Detallecotizacion;
 use app\models\DetallecotizacionSearch;
 use app\models\Empleado;
 
+use Jaspersoft\Client\Client;
 /**
 /**
  * CotizacionController implements the CRUD actions for Cotizacion model.
@@ -39,6 +40,9 @@ class CotizacionController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new CotizacionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -56,6 +60,9 @@ class CotizacionController extends Controller
      */
     public function actionView($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
          $model = $this->findModel($id);
         $searchModel = new DetallecotizacionSearch();
         $searchModel->Cotizacion_id = $id;
@@ -74,6 +81,9 @@ class CotizacionController extends Controller
      */
     public function actionCreate()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Cotizacion();
         $model->Total = 0;
          $emps = [];
@@ -92,6 +102,9 @@ class CotizacionController extends Controller
     }
     public function actionCreates($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
         $searchModel = new DetallecotizacionSearch();
         $searchModel->Cotizacion_id = $id;
@@ -117,6 +130,9 @@ class CotizacionController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -157,4 +173,44 @@ class CotizacionController extends Controller
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
+public function actionReporte($id) {
+/*
+    $tmporden=Orden::find()->where(['id_orden'=>$id])->one();
+    if ($tmporden->resultado_completo==0){
+        $tmporden->resultado_completo=1;
+        $tmporden->save();
+    }*/
+/* esta es la parte importante con las credenciales. */
+    $c = new \Jaspersoft\Client\Client(
+            "http://localhost:8080/jasperserver",
+            "jasperadmin",
+            "jasperadmin"
+          );    
+    $c->setRequestTimeout(60);    
+
+    /* aca mandas a llamar al reporte que querras usar*/
+    
+      $nomjasperreport='reports/optica/rinventario';
+    
+/* aca estoy mandando los datos que puse, ese subreportdir es porque cree una carpeta dentro del jasperserver que se llama labcastillo
+la parte de la ext es porque los reportes son de extensión .jasper, pero yo el nombre que les coloque fue sin la 
+extensión por eso esa variable*/
+    $inputControls = array(
+            'idcot' => $id,
+            );
+
+            /* el nomrepo es para el nombre que va a devolver al pdf que se genere*/
+    $nomrepo = 'Inventario-'.'_'.date("Y-m-d H:i:s").'.pdf';
+    $report = $c->reportService()->runReport('/reports/Optica/Cotizacion', 'pdf', null, null, $inputControls);
+
+    /*aca podes cambiar si queres un excel o un docx o algo así*/
+    $options = ['Content-Type'=>'application/pdf','inline'=>true,'Content-Disposition'=> 'inline'];
+    Yii::$app->response->setDownloadHeaders($nomrepo,'application/pdf',true);
+
+    /*esto devuelve el pdf, y lo visualizaras en el navegador en una ventana nueva, para eso sirvio
+    el javascript que agregamos al inicio para abrirnos una nueva ventana. */
+    return Yii::$app->response->sendContentAsFile( $report,$nomrepo,$options);
+
+
+  }
 }

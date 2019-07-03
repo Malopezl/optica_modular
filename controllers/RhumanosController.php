@@ -12,12 +12,24 @@ class RhumanosController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        else
+        {
+            return $this->render('index');
+        }
+        
     }
 
      public function actionDetalles()
     {
-        $searchModel = new CargoSearch();
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+        else
+        {
+             $searchModel = new CargoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $searchModel1 = new ProfesionSearch();
         $dataProvider1 = $searchModel1->search(Yii::$app->request->queryParams);
@@ -29,6 +41,8 @@ class RhumanosController extends \yii\web\Controller
             'dataProvider1' => $dataProvider1,
             
         ]);
+        }
+       
     }
 
 }

@@ -46,6 +46,9 @@ class EntradaController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new EntradaSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -63,6 +66,9 @@ class EntradaController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model11 = null;
         $model12 = null;
         $model21 = null;
@@ -118,6 +124,9 @@ class EntradaController extends Controller
      */
     public function actionCreate($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Entrada();
         if($id != 0)
             {
@@ -154,6 +163,9 @@ class EntradaController extends Controller
     
     public function actionCreateinlst($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Entrada();
         if($id != 0)
         {
@@ -182,6 +194,9 @@ class EntradaController extends Controller
     }
      public function actionCreateinlt($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Entrada();
         if($id != 0)
         {
@@ -211,6 +226,9 @@ class EntradaController extends Controller
     }
     public function actionCreateinar($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Entrada();
         if($id != 0)
         {
@@ -237,6 +255,9 @@ class EntradaController extends Controller
     }
     public function actionCreateinacc($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Entrada();
         if($id != 0)
         {
@@ -272,6 +293,9 @@ class EntradaController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

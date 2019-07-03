@@ -14,10 +14,16 @@ class FinancieroController extends \yii\web\Controller
 {
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('index');
     }
     public function actionCuentas()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
     	$searchModel = new BancosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $searchModel1 = new CajaSearch();

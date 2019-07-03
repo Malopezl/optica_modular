@@ -35,6 +35,9 @@ class AccesoriosController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $searchModel = new AccesoriosSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -52,6 +55,9 @@ class AccesoriosController extends Controller
      */
     public function actionView($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'inv' => $inv,
@@ -65,6 +71,9 @@ class AccesoriosController extends Controller
      */
     public function actionCreate($inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Accesorios();
         $model->Precio_compra = 0 ;
             $model->Existencia = 0 ;
@@ -84,6 +93,9 @@ class AccesoriosController extends Controller
     }
     public function actionCreatec($inv, $ido, $op)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = new Accesorios();
         $model->Precio_compra = 0 ;
             $model->Existencia = 0 ;
@@ -113,6 +125,9 @@ class AccesoriosController extends Controller
      */
     public function actionUpdate($id, $inv)
     {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
