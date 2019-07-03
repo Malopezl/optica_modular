@@ -39,6 +39,7 @@ class Detallecotizacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Cantidad','Descuento'],'required'],
             [['Cotizacion_id', 'Aro_id', 'Accesorios_id', 'Lentesterm_id', 'Lenteterm_id'], 'integer'],
             [['Total', 'Cantidad', 'Descuento'], 'number'],
             [['Accesorios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['Accesorios_id' => 'id']],
@@ -57,10 +58,10 @@ class Detallecotizacion extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Cotizacion_id' => 'Cotizacion ID',
-            'Aro_id' => 'Aro ID',
-            'Accesorios_id' => 'Accesorios ID',
-            'Lentesterm_id' => 'Lentesterm ID',
-            'Lenteterm_id' => 'Lenteterm ID',
+            'Aro_id' => 'Aro',
+            'Accesorios_id' => 'Accesorio',
+            'Lentesterm_id' => 'Lente semiterminado',
+            'Lenteterm_id' => 'Lente terminado',
             'Total' => 'Total',
             'Cantidad' => 'Cantidad',
             'Descuento' => 'Descuento',

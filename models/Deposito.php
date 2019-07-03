@@ -33,6 +33,7 @@ class Deposito extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Monto','Fecha','Empleado_id','Bancos_id','Nodocumento'],'required'],
             [['Monto'], 'number'],
             [['Fecha'], 'safe'],
             [['Empleado_id', 'Bancos_id'], 'integer'],
@@ -49,11 +50,11 @@ class Deposito extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Nodocumento' => 'Nodocumento',
+            'Nodocumento' => 'No. de documento',
             'Monto' => 'Monto',
             'Fecha' => 'Fecha',
-            'Empleado_id' => 'Empleado ID',
-            'Bancos_id' => 'Bancos ID',
+            'Empleado_id' => 'Empleado',
+            'Bancos_id' => 'Banco',
         ];
     }
 

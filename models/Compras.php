@@ -38,6 +38,7 @@ class Compras extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha','Empleado_id','Nodocumeto','Proveedores_id'],'required'],
             [['Fecha'], 'safe'],
             [['Total', 'Contado', 'Credito'], 'number'],
             [['Empleado_id', 'Proveedores_id'], 'integer'],
@@ -56,13 +57,13 @@ class Compras extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Fecha' => 'Fecha',
-            'Nodocumeto' => 'Nodocumeto',
+            'Nodocumeto' => 'No. de documeto',
             'Total' => 'Total',
             'Contado' => 'Contado',
             'Credito' => 'Credito',
             'Comprascol' => 'Comprascol',
-            'Empleado_id' => 'Empleado ID',
-            'Proveedores_id' => 'Proveedores ID',
+            'Empleado_id' => 'Empleado',
+            'Proveedores_id' => 'Proveedor',
         ];
     }
 

@@ -34,6 +34,7 @@ class Cotizacion extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            
             [['Fecha'], 'safe'],
             [['Total'], 'number'],
             [['Detalles'], 'string'],

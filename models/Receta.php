@@ -38,6 +38,7 @@ class Receta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha','Cliente_id'],'required'],
             [['Fecha'], 'safe'],
             [['Esfera_OD', 'Esfera_OI', 'Eje_OD', 'Eje_OI', 'Cilindro_OD', 'Cilindro_OI', 'Cliente_id'], 'integer'],
             [['Adicion_OD', 'Adicion_OI'], 'string', 'max' => 15],
@@ -53,15 +54,15 @@ class Receta extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Fecha' => 'Fecha',
-            'Esfera_OD' => 'Esfera Od',
-            'Esfera_OI' => 'Esfera Oi',
-            'Eje_OD' => 'Eje Od',
-            'Eje_OI' => 'Eje Oi',
-            'Cilindro_OD' => 'Cilindro Od',
-            'Cilindro_OI' => 'Cilindro Oi',
-            'Adicion_OD' => 'Adicion Od',
-            'Adicion_OI' => 'Adicion Oi',
-            'Cliente_id' => 'Cliente ID',
+            'Esfera_OD' => 'Esfera Ojo Derecho',
+            'Esfera_OI' => 'Esfera Ojo Izquierdo',
+            'Eje_OD' => 'Eje Ojo Derecho',
+            'Eje_OI' => 'Eje Ojo Izquierdo',
+            'Cilindro_OD' => 'Cilindro Ojo Derecho',
+            'Cilindro_OI' => 'Cilindro Ojo Izquierdo',
+            'Adicion_OD' => 'Adicion Ojo Derecho',
+            'Adicion_OI' => 'Adicion Ojo Izquierdo',
+            'Cliente_id' => 'Cliente',
         ];
     }
 

@@ -28,6 +28,7 @@ class Bancosn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Nombre'],'required'],
             [['Nombre'], 'string', 'max' => 45],
         ];
     }

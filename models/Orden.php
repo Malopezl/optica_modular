@@ -44,6 +44,7 @@ class Orden extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Receta_id','No_Caja','Descuento'],'required'],
             [['Receta_id', 'Lentei_id', 'Lented_id', 'Aro_id', 'Venta_id', 'Entregada', 'Lista', 'Finalizada'], 'integer'],
             [['Fecha_Entrega'], 'safe'],
             [['Anotaciones'], 'string'],
@@ -64,13 +65,13 @@ class Orden extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Receta_id' => 'Receta ID',
-            'Lentei_id' => 'Lentei ID',
-            'Lented_id' => 'Lented ID',
-            'Aro_id' => 'Aro ID',
-            'No_Caja' => 'No Caja',
-            'Venta_id' => 'Venta ID',
-            'Fecha_Entrega' => 'Fecha Entrega',
+            'Receta_id' => 'Receta',
+            'Lentei_id' => 'Lente izquierdo',
+            'Lented_id' => 'Lente derecho',
+            'Aro_id' => 'Aro',
+            'No_Caja' => 'No. de Caja',
+            'Venta_id' => 'Venta',
+            'Fecha_Entrega' => 'Fecha de Entrega',
             'Anotaciones' => 'Anotaciones',
             'Descuento' => 'Descuento',
             'Entregada' => 'Entregada',

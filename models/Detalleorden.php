@@ -37,6 +37,7 @@ class Detalleorden extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Descuento'],'required'],
             [['Aro_id', 'Lentesterm_id', 'Lenteterm_id'], 'integer'],
             [['Descuento', 'Total'], 'number'],
             [['Aro_id'], 'exist', 'skipOnError' => true, 'targetClass' => Aro::className(), 'targetAttribute' => ['Aro_id' => 'id']],
@@ -52,9 +53,9 @@ class Detalleorden extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Aro_id' => 'Aro ID',
-            'Lentesterm_id' => 'Lentesterm ID',
-            'Lenteterm_id' => 'Lenteterm ID',
+            'Aro_id' => 'Aro',
+            'Lentesterm_id' => 'Lente semiterminado',
+            'Lenteterm_id' => 'Lente terminado',
             'Descuento' => 'Descuento',
             'Total' => 'Total',
         ];

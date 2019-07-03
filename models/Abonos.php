@@ -32,6 +32,7 @@ class Abonos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha','Cliente_id','Encargado','Cantidad','Nodocumento'],'required'],
             [['Cliente_id'], 'integer'],
             [['Fecha'], 'safe'],
             [['Cantidad'], 'number'],
@@ -48,11 +49,11 @@ class Abonos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'Cliente_id' => 'Cliente ID',
+            'Cliente_id' => 'Cliente',
             'Fecha' => 'Fecha',
             'Cantidad' => 'Cantidad',
             'Encargado' => 'Encargado',
-            'Nodocumento' => 'Nodocumento',
+            'Nodocumento' => 'No. de documento',
         ];
     }
 

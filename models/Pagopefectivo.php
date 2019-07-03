@@ -35,6 +35,7 @@ class Pagopefectivo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Caja_id','Empleado_id','Proveedores_id', 'Fecha', 'Monto'],'required'],
             [['Caja_id', 'Empleado_id', 'Proveedores_id'], 'integer'],
             [['Monto'], 'number'],
             [['Fecha'], 'safe'],
@@ -54,9 +55,9 @@ class Pagopefectivo extends \yii\db\ActiveRecord
             'Caja_id' => 'Caja ID',
             'id' => 'ID',
             'Monto' => 'Monto',
-            'Empleado_id' => 'Empleado ID',
-            'Nodocumento' => 'Nodocumento',
-            'Proveedores_id' => 'Proveedores ID',
+            'Empleado_id' => 'Empleado',
+            'Nodocumento' => 'No. de documento',
+            'Proveedores_id' => 'Proveedor',
             'Fecha' => 'Fecha',
         ];
     }
