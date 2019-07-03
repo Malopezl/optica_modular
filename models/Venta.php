@@ -40,6 +40,7 @@ class Venta extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha','Cliente_id','Empleado_id'],'required'],
             [['Fecha'], 'safe'],
             [['Total', 'Credito', 'Contado'], 'number'],
             [['Cliente_id', 'Finalizada', 'Entregada', 'Empleado_id'], 'integer'],

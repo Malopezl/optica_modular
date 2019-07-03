@@ -35,6 +35,7 @@ class Bancos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Bancosn_id','No_cuenta','Total'],'required'],
             [['Total'], 'number'],
             [['Bancosn_id'], 'integer'],
             [['No_cuenta'], 'string', 'max' => 45],
@@ -50,11 +51,11 @@ class Bancos extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'No_cuenta' => 'No Cuenta',
+            'No_cuenta' => 'No. de Cuenta',
             'Total' => 'Total',
             'Nombre_b' => 'Nombre B',
-            'Tipo_cuenta' => 'Tipo Cuenta',
-            'Bancosn_id' => 'Bancosn ID',
+            'Tipo_cuenta' => 'Tipo de Cuenta',
+            'Bancosn_id' => 'Nombre del Banco',
         ];
     }
 

@@ -30,6 +30,7 @@ class Caja extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Total', 'Fecha'],'required'],
             [['Total'], 'number'],
             [['Fecha'], 'safe'],
             [['Descripcion'], 'string'],

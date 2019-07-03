@@ -36,6 +36,7 @@ class Pagopbanco extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Fecha','Monto','Proveedores_id','Bancos_id','No_cheque','Nodocumento'],'required'],
             [['Monto'], 'number'],
             [['Empleado_id', 'Proveedores_id', 'Bancos_id'], 'integer'],
             [['Fecha'], 'safe'],
@@ -53,12 +54,12 @@ class Pagopbanco extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'No_cheque' => 'No Cheque',
+            'No_cheque' => 'No. de Cheque',
             'Monto' => 'Monto',
             'Nodocumento' => 'Nodocumento',
-            'Empleado_id' => 'Empleado ID',
-            'Proveedores_id' => 'Proveedores ID',
-            'Bancos_id' => 'Bancos ID',
+            'Empleado_id' => 'Empleado',
+            'Proveedores_id' => 'Proveedor',
+            'Bancos_id' => 'Banco',
             'Fecha' => 'Fecha',
         ];
     }

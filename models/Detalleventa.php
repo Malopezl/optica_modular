@@ -35,6 +35,7 @@ class Detalleventa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Cantidad','Descuento'],'required'],
             [['Cantidad', 'Descuento', 'Total'], 'number'],
             [['Venta_id', 'Accesorios_id', 'Aro_id'], 'integer'],
             [['Accesorios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['Accesorios_id' => 'id']],
@@ -52,8 +53,8 @@ class Detalleventa extends \yii\db\ActiveRecord
             'id' => 'ID',
             'Cantidad' => 'Cantidad',
             'Venta_id' => 'Venta ID',
-            'Accesorios_id' => 'Accesorios ID',
-            'Aro_id' => 'Aro ID',
+            'Accesorios_id' => 'Accesorio',
+            'Aro_id' => 'Aro',
             'Descuento' => 'Descuento',
             'Total' => 'Total',
         ];

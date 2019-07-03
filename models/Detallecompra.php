@@ -41,6 +41,7 @@ class Detallecompra extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['Cantidad'],'required'],
             [['Cantidad', 'Precio_compra', 'Total'], 'number'],
             [['Lenteterm_id', 'Lentesterm_id', 'Accesorios_id', 'Aro_id', 'Compras_id', 'Mobyequipo_id'], 'integer'],
             [['Accesorios_id'], 'exist', 'skipOnError' => true, 'targetClass' => Accesorios::className(), 'targetAttribute' => ['Accesorios_id' => 'id']],
@@ -60,14 +61,14 @@ class Detallecompra extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'Cantidad' => 'Cantidad',
-            'Precio_compra' => 'Precio Compra',
+            'Precio_compra' => 'Precio de Compra',
             'Total' => 'Total',
-            'Lenteterm_id' => 'Lenteterm ID',
-            'Lentesterm_id' => 'Lentesterm ID',
-            'Accesorios_id' => 'Accesorios ID',
+            'Lenteterm_id' => 'Lente terminado',
+            'Lentesterm_id' => 'Lente semiterminado',
+            'Accesorios_id' => 'Accesorio',
             'Aro_id' => 'Aro ID',
-            'Compras_id' => 'Compras ID',
-            'Mobyequipo_id' => 'Mobyequipo ID',
+            'Compras_id' => 'Compra',
+            'Mobyequipo_id' => 'Mobiliario y equipo',
         ];
     }
 
