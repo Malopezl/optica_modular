@@ -2,9 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Cotizacion */
 
@@ -31,6 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 -->
     <p>
         <?= Html::a(Yii::t('app', 'Inicio'), ['cotizacion/index'], ['class' => 'btn btn-danger']) ?>    
+        <button class="btn btn-default _normal">Imprimir Reporte</button>
     </p>
 
     <?= DetailView::widget([
@@ -88,3 +89,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     </p>
 </div>
+<?php 
+        $this->registerJs(
+                '$(\'._normal\').on(\'click\', function(event){
+                            window.open("'.Url::toRoute(['cotizacion/reporte','id'=>$model->id]).'","_blank");                    
+                                });'
+            );
+    ?>
